@@ -71,17 +71,30 @@ export const NUMBER_WORDS_EN = [
 
 export const COUNTABLE_SUBJECTS = [
   "apple", "star", "balloon", "flower", "fish", "butterfly", "ball", "grape", "banana", "heart",
+  "pineapple", "cherry", "egg", "mushroom", "ladybug",
 ];
 
 export const OBJECT_POOL = [
   "goose", "cat", "dog", "elephant", "rabbit", "fish", "bird", "butterfly", "bee", "frog",
   "lion", "monkey", "cow", "chicken", "duck", "turtle", "bear", "owl", "sheep",
+  "tiger", "giraffe", "zebra", "fox", "horse", "pig", "mouse", "penguin", "snail",
+  "ladybug", "gecko", "deer", "squirrel", "camel", "eagle",
   "apple", "banana", "orange", "grape", "strawberry", "watermelon",
-  "car", "bus", "bicycle", "star", "sun", "moon", "cloud", "balloon", "book", "ball",
-  "flower", "tree", "house", "umbrella", "heart", "gift", "kite",
+  "carrot", "corn", "pineapple", "mango", "cherry", "bread", "egg", "pizza", "cake", "icecream",
+  "car", "bus", "bicycle", "train", "airplane", "boat",
+  "star", "sun", "moon", "cloud", "balloon", "book", "ball", "rainbow", "clock", "key", "hat", "shoe",
+  "flower", "tree", "leaf", "mushroom", "house", "umbrella", "heart", "gift", "kite",
 ];
 
-export const VEHICLE_POOL = ["car", "bus", "bicycle", "kite"];
+export const VEHICLE_POOL = ["car", "bus", "bicycle", "train", "airplane", "boat", "kite"];
+
+export const FRUIT_POOL = [
+  "apple", "banana", "orange", "grape", "strawberry", "watermelon", "pineapple", "mango", "cherry",
+];
+
+export const FOOD_POOL = [
+  "apple", "banana", "bread", "egg", "corn", "carrot", "pizza", "cake", "icecream", "pineapple", "mango", "cherry",
+];
 
 export const ANIMAL_POOL: { label: string; subject: string; category: string }[] = [
   { label: "Kucing", subject: "cat", category: "Hewan Darat" },
@@ -92,15 +105,30 @@ export const ANIMAL_POOL: { label: string; subject: string; category: string }[]
   { label: "Sapi", subject: "cow", category: "Hewan Darat" },
   { label: "Beruang", subject: "bear", category: "Hewan Darat" },
   { label: "Domba", subject: "sheep", category: "Hewan Darat" },
+  { label: "Harimau", subject: "tiger", category: "Hewan Darat" },
+  { label: "Jerapah", subject: "giraffe", category: "Hewan Darat" },
+  { label: "Zebra", subject: "zebra", category: "Hewan Darat" },
+  { label: "Rubah", subject: "fox", category: "Hewan Darat" },
+  { label: "Kuda", subject: "horse", category: "Hewan Darat" },
+  { label: "Babi", subject: "pig", category: "Hewan Darat" },
+  { label: "Tikus", subject: "mouse", category: "Hewan Darat" },
+  { label: "Rusa", subject: "deer", category: "Hewan Darat" },
+  { label: "Tupai", subject: "squirrel", category: "Hewan Darat" },
+  { label: "Unta", subject: "camel", category: "Hewan Darat" },
+  { label: "Cicak", subject: "gecko", category: "Hewan Darat" },
+  { label: "Siput", subject: "snail", category: "Hewan Darat" },
   { label: "Ikan", subject: "fish", category: "Hewan Air" },
   { label: "Bebek", subject: "duck", category: "Hewan Air" },
   { label: "Angsa", subject: "goose", category: "Hewan Air" },
   { label: "Kura-kura", subject: "turtle", category: "Hewan Air" },
   { label: "Katak", subject: "frog", category: "Hewan Air" },
+  { label: "Penguin", subject: "penguin", category: "Hewan Air" },
   { label: "Burung", subject: "bird", category: "Hewan Udara" },
   { label: "Kupu-kupu", subject: "butterfly", category: "Hewan Udara" },
   { label: "Lebah", subject: "bee", category: "Hewan Udara" },
   { label: "Burung Hantu", subject: "owl", category: "Hewan Udara" },
+  { label: "Elang", subject: "eagle", category: "Hewan Udara" },
+  { label: "Kepik", subject: "ladybug", category: "Hewan Udara" },
 ];
 
 export const SHAPE_POOL: { shape: string; label: string }[] = [
@@ -146,6 +174,8 @@ const TOPIC_POOLS: TopicPool[] = [
   { keywords: ["bentuk", "shape"], subjects: SHAPE_POOL.map((s) => s.shape) },
   { keywords: ["ramadan", "puasa", "islam", "lebaran", "hijaiyah"], subjects: RAMADAN_POOL.map((r) => r.subject) },
   { keywords: ["kendaraan", "transportasi", "vehicle"], subjects: VEHICLE_POOL },
+  { keywords: ["buah", "fruit"], subjects: FRUIT_POOL },
+  { keywords: ["makanan", "food", "kuliner"], subjects: FOOD_POOL },
   { keywords: ["inggris", "english"], subjects: OBJECT_POOL },
 ];
 
