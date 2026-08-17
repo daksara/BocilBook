@@ -1,0 +1,13 @@
+export { PageRenderer } from "./page-renderer";
+export { WorksheetFrame, InstructionBanner, IllustrationTile, useStylePalette } from "./worksheet-frame";
+export { CoverTemplate } from "./cover-template";
+export { LetterTracingTemplate } from "./letter-tracing-template";
+export { NumberTracingTemplate } from "./number-tracing-template";
+export { CountAndCircleTemplate } from "./count-and-circle-template";
+export { MatchObjectsTemplate } from "./match-objects-template";
+export { FindAndCircleTemplate } from "./find-and-circle-template";
+export { ColoringPageTemplate } from "./coloring-page-template";
+export { MazeTemplate } from "./maze-template";
+export { CutAndPasteTemplate } from "./cut-and-paste-template";
+export { ShapeRecognitionTemplate } from "./shape-recognition-template";
+export { AnimalClassificationTemplate } from "./animal-classification-template";
