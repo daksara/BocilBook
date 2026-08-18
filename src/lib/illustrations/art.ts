@@ -97,8 +97,15 @@ export const ART: Record<string, Builder> = {
     <path d="M 108 52 Q 128 46 132 62 Q 114 66 108 52 Z" fill="${fillOrNone(p, "#4FCB8E")}" stroke="${p.line}" stroke-width="3"/>
   `,
   banana: (p) => `
-    <path d="M 78 32 C 128 42 162 78 158 114 C 154 146 122 166 76 168 C 92 146 100 118 94 96 C 89 74 82 52 78 32 Z" fill="${fillOrNone(p, "#FFD166")}" stroke="${p.line}" stroke-width="${S}" stroke-linejoin="round"/>
-    <path d="M 76 34 Q 66 24 74 14" fill="none" stroke="${p.line}" stroke-width="4" stroke-linecap="round"/>
+    <g transform="rotate(120 100 100)">
+      <path d="M 78 32 C 128 42 162 78 158 114 C 154 146 122 166 76 168 C 92 146 100 118 94 96 C 89 74 82 52 78 32 Z" fill="${fillOrNone(p, "#FFD166")}" stroke="${p.line}" stroke-width="${S}" stroke-linejoin="round"/>
+      <path d="M 82 70 C 76 96 78 128 90 150" fill="none" stroke="${p.line}" stroke-width="2.5" opacity="0.5" stroke-linecap="round"/>
+      <path d="M 80 33 L 90 25 L 96 33 Z" fill="${fillOrNone(p, "#B5651D")}" stroke="${p.line}" stroke-width="2" stroke-linejoin="round"/>
+      <path d="M 108 92 L 100 108" stroke="#fff" stroke-width="6" stroke-linecap="round" opacity="${p.outlineOnly ? 0 : 0.75}"/>
+      <circle cx="118" cy="78" r="4" fill="#fff" opacity="${p.outlineOnly ? 0 : 0.75}"/>
+      <path d="M 82 167 L 78 190 L 58 190 L 60 165 Z" fill="${fillOrNone(p, "#8BC34A")}" stroke="${p.line}" stroke-width="3.5" stroke-linejoin="round"/>
+      <path d="M 62 178 L 76 176" stroke="${p.line}" stroke-width="2" opacity="0.45"/>
+    </g>
   `,
   orange: (p) => `
     <circle cx="100" cy="112" r="52" fill="${fillOrNone(p, "#FFA630")}" stroke="${p.line}" stroke-width="${S}"/>
