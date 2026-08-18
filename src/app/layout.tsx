@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Plus_Jakarta_Sans, Baloo_2 } from "next/font/google";
+import { Plus_Jakarta_Sans, Baloo_2, Fredoka } from "next/font/google";
 import "./globals.css";
 
 const plusJakarta = Plus_Jakarta_Sans({
@@ -12,6 +12,12 @@ const baloo = Baloo_2({
   variable: "--font-baloo",
   subsets: ["latin"],
   weight: ["500", "600", "700", "800"],
+});
+
+const fredoka = Fredoka({
+  variable: "--font-fredoka",
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -40,7 +46,7 @@ export default function RootLayout({
   return (
     <html lang="id" suppressHydrationWarning>
       <body
-        className={`${plusJakarta.variable} ${baloo.variable} font-sans antialiased`}
+        className={`${plusJakarta.variable} ${baloo.variable} ${fredoka.variable} font-sans antialiased`}
       >
         {children}
       </body>

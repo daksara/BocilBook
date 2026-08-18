@@ -146,6 +146,7 @@
 
   --font-sans: var(--font-plus-jakarta), ui-sans-serif, system-ui, sans-serif;
   --font-display: var(--font-baloo), ui-sans-serif, system-ui, sans-serif;
+  --font-trace: var(--font-fredoka), ui-sans-serif, system-ui, sans-serif;
 
   --radius-sm: calc(var(--radius) - 6px);
   --radius-md: calc(var(--radius) - 4px);
