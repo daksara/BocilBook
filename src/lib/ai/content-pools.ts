@@ -86,7 +86,10 @@ export const OBJECT_POOL = [
   "flower", "tree", "leaf", "mushroom", "house", "umbrella", "heart", "gift", "kite",
 ];
 
-export const VEHICLE_POOL = ["car", "bus", "bicycle", "train", "airplane", "boat", "kite"];
+export const VEHICLE_POOL = [
+  "car", "bus", "bicycle", "train", "airplane", "boat", "kite",
+  "motorcycle", "helicopter", "ship", "ambulance", "firetruck", "tractor", "scooter",
+];
 
 export const FRUIT_POOL = [
   "apple", "banana", "orange", "grape", "strawberry", "watermelon", "pineapple", "mango", "cherry",
@@ -110,13 +113,57 @@ export const ANIMAL_POOL: { label: string; subject: string; category: string }[]
   { label: "Tikus", subject: "mouse", category: "Hewan Darat" },
   { label: "Cicak", subject: "gecko", category: "Hewan Darat" },
   { label: "Siput", subject: "snail", category: "Hewan Darat" },
+  { label: "Singa", subject: "lion", category: "Hewan Darat" },
+  { label: "Jerapah", subject: "giraffe", category: "Hewan Darat" },
+  { label: "Domba", subject: "sheep", category: "Hewan Darat" },
+  { label: "Kambing", subject: "goat", category: "Hewan Darat" },
+  { label: "Kuda", subject: "horse", category: "Hewan Darat" },
+  { label: "Rusa", subject: "deer", category: "Hewan Darat" },
+  { label: "Tupai", subject: "squirrel", category: "Hewan Darat" },
+  { label: "Unta", subject: "camel", category: "Hewan Darat" },
+  { label: "Koala", subject: "koala", category: "Hewan Darat" },
+  { label: "Panda", subject: "panda", category: "Hewan Darat" },
+  { label: "Kanguru", subject: "kangaroo", category: "Hewan Darat" },
+  { label: "Landak", subject: "hedgehog", category: "Hewan Darat" },
+  { label: "Kuda Nil", subject: "hippo", category: "Hewan Darat" },
+  { label: "Badak", subject: "rhino", category: "Hewan Darat" },
+  { label: "Ular", subject: "snake", category: "Hewan Darat" },
   { label: "Ikan", subject: "fish", category: "Hewan Air" },
   { label: "Katak", subject: "frog", category: "Hewan Air" },
   { label: "Penguin", subject: "penguin", category: "Hewan Air" },
+  { label: "Bebek", subject: "duck", category: "Hewan Air" },
+  { label: "Angsa", subject: "goose", category: "Hewan Air" },
+  { label: "Kura-kura", subject: "turtle", category: "Hewan Air" },
+  { label: "Lumba-lumba", subject: "dolphin", category: "Hewan Air" },
+  { label: "Paus", subject: "whale", category: "Hewan Air" },
+  { label: "Hiu", subject: "shark", category: "Hewan Air" },
+  { label: "Gurita", subject: "octopus", category: "Hewan Air" },
+  { label: "Kepiting", subject: "crab", category: "Hewan Air" },
+  { label: "Anjing Laut", subject: "seal", category: "Hewan Air" },
   { label: "Burung", subject: "bird", category: "Hewan Udara" },
   { label: "Kupu-kupu", subject: "butterfly", category: "Hewan Udara" },
   { label: "Kepik", subject: "ladybug", category: "Hewan Udara" },
+  { label: "Burung Hantu", subject: "owl", category: "Hewan Udara" },
+  { label: "Elang", subject: "eagle", category: "Hewan Udara" },
+  { label: "Merak", subject: "peacock", category: "Hewan Udara" },
+  { label: "Kakatua", subject: "parrot", category: "Hewan Udara" },
+  { label: "Lebah", subject: "bee", category: "Serangga" },
+  { label: "Laba-laba", subject: "spider", category: "Serangga" },
+  { label: "Semut", subject: "ant", category: "Serangga" },
+  { label: "Nyamuk", subject: "mosquito", category: "Serangga" },
 ];
+
+export const SPACE_POOL = ["rocket", "planet", "astronaut", "alien", "ufo", "comet", "telescope", "star", "moon"];
+
+export const OCEAN_POOL = ["fish", "dolphin", "whale", "shark", "octopus", "crab", "seal", "turtle", "penguin"];
+
+export const PROFESSION_POOL = ["doctor", "teacher", "police", "firefighter", "chef", "farmer", "pilot", "scientist"];
+
+export const INSECT_POOL = ["bee", "spider", "ant", "mosquito", "butterfly", "ladybug", "snail", "caterpillar"];
+
+export const WEATHER_POOL = ["sun", "rain", "snow", "cloud", "lightning", "rainbow", "snowman", "umbrella"];
+
+export const BODY_POOL = ["eye", "hand", "foot", "ear", "nose", "mouth", "tooth"];
 
 export const SHAPE_POOL: { shape: string; label: string }[] = [
   { shape: "circle", label: "Lingkaran" },
@@ -144,8 +191,9 @@ export const RAMADAN_POOL = [
   { label: "Bulan Sabit", subject: "moon" },
   { label: "Bintang", subject: "star" },
   { label: "Kurma", subject: "gift" },
-  { label: "Lentera", subject: "balloon" },
-  { label: "Masjid", subject: "house" },
+  { label: "Lentera", subject: "lantern" },
+  { label: "Masjid", subject: "mosque" },
+  { label: "Tasbih", subject: "prayerbeads" },
 ];
 
 export const TOPIC_IDEA_SUBJECTS: { id: string; en: string }[] = [
@@ -195,7 +243,13 @@ interface TopicPool {
 const TOPIC_POOLS: TopicPool[] = [
   { keywords: ["huruf", "alphabet", "abc", "letter"], subjects: OBJECT_POOL },
   { keywords: ["angka", "number", "berhitung", "matematika"], subjects: COUNTABLE_SUBJECTS },
-  { keywords: ["hewan", "animal", "binatang"], subjects: ANIMAL_POOL.map((a) => a.subject) },
+  { keywords: ["luar angkasa", "antariksa", "space", "planet", "astronot"], subjects: SPACE_POOL },
+  { keywords: ["bawah laut", "laut", "ocean", "underwater", "sea"], subjects: OCEAN_POOL },
+  { keywords: ["hewan", "animal", "binatang", "kebun binatang", "zoo"], subjects: ANIMAL_POOL.map((a) => a.subject) },
+  { keywords: ["serangga", "insect", "bug"], subjects: INSECT_POOL },
+  { keywords: ["profesi", "pekerjaan", "cita-cita", "profession", "job"], subjects: PROFESSION_POOL },
+  { keywords: ["cuaca", "musim", "weather", "season"], subjects: WEATHER_POOL },
+  { keywords: ["anggota tubuh", "tubuh", "body"], subjects: BODY_POOL },
   { keywords: ["warna", "color", "colour"], subjects: COLOR_POOL.map((c) => c.subject) },
   { keywords: ["bentuk", "shape"], subjects: SHAPE_POOL.map((s) => s.shape) },
   { keywords: ["ramadan", "puasa", "islam", "lebaran", "hijaiyah"], subjects: RAMADAN_POOL.map((r) => r.subject) },

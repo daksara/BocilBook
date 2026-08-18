@@ -1,6 +1,7 @@
 import type { BookStyle } from "@/types";
 import { ART, findArtKey } from "./art";
 import { mascotArt } from "./mascot";
+import { resolveEmoji } from "./emoji";
 import { pickPalette, type ArtPalette } from "./palette";
 
 /** Indonesian / colloquial synonyms mapped to the canonical art dictionary keys. */
@@ -110,6 +111,10 @@ function svgToDataUri(svg: string): string {
   return `data:image/svg+xml,${encoded}`;
 }
 
+function emojiArt(char: string): string {
+  return `<text x="100" y="100" font-size="118" text-anchor="middle" dominant-baseline="central">${char}</text>`;
+}
+
 export interface GeneratedIllustration {
   url: string;
   palette: string;
@@ -120,6 +125,12 @@ export interface GeneratedIllustration {
  * illustrations so the whole product experience works with zero API keys.
  * Swap `imageProvider` for a real implementation (DALL-E, SDXL, etc.) later —
  * callers only depend on generateIllustration()'s { url, palette } shape.
+ *
+ * Illustration source falls back in three tiers: hand-drawn art (`art.ts`,
+ * recolors per book style) -> emoji (`emoji.ts`, real but fixed-color, wide
+ * coverage) -> generic mascot blob (last resort, no real match at all).
+ * Emoji is skipped for the outline-only print style since its colors can't
+ * be stripped to match.
  */
 export function generateIllustrationSync(
   subject: string,
@@ -128,7 +139,15 @@ export function generateIllustrationSync(
 ): GeneratedIllustration {
   const palette = pickPalette(style, variantSeed);
   const key = resolveArtKey(subject);
-  const inner = key ? ART[key](palette) : mascotArt(subject, palette);
+  let inner: string;
+  if (key) {
+    inner = ART[key](palette);
+  } else if (!palette.outlineOnly) {
+    const emoji = resolveEmoji(subject);
+    inner = emoji ? emojiArt(emoji) : mascotArt(subject, palette);
+  } else {
+    inner = mascotArt(subject, palette);
+  }
   const svg = wrapSvg(inner, palette);
   return { url: svgToDataUri(svg), palette: palette.name };
 }
