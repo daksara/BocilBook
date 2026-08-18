@@ -73,7 +73,7 @@ export const ART: Record<string, Builder> = {
     <ellipse cx="100" cy="120" rx="50" ry="40" fill="${fillOrNone(p, "#fff")}" stroke="${p.line}" stroke-width="${S}"/>
     <path d="M 70 100 Q 60 84 76 78 Q 82 92 84 104 Z" fill="${fillOrNone(p, p.fill)}" stroke="${p.line}" stroke-width="3.5" stroke-linejoin="round"/>
     <path d="M 130 100 Q 140 84 124 78 Q 118 92 116 104 Z" fill="${fillOrNone(p, p.fill)}" stroke="${p.line}" stroke-width="3.5" stroke-linejoin="round"/>
-    <path d="M 54 84 L 44 66 M 146 84 L 156 66" stroke="${p.line}" stroke-width="${S}" stroke-linecap="round"/>
+    <path d="M 76 78 L 62 52 M 124 78 L 138 52" stroke="${p.line}" stroke-width="${S}" stroke-linecap="round"/>
     ${face(p, 100, 118, 16)}
     <ellipse cx="100" cy="140" rx="14" ry="9" fill="${fillOrNone(p, "#fff")}" stroke="${p.line}" stroke-width="3"/>
   `,
