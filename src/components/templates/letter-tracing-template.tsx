@@ -20,14 +20,14 @@ export function LetterTracingTemplate({
       <div className="flex flex-1 flex-col items-center justify-center gap-4">
         <div className="flex items-end gap-4 sm:gap-6">
           <span
-            className="font-trace text-[5rem] leading-none font-bold sm:text-[7rem]"
-            style={{ color: "transparent", WebkitTextStroke: `3px ${p.ink}` }}
+            className="font-trace text-[5.5rem] leading-none font-bold sm:text-[8rem]"
+            style={{ color: "transparent", WebkitTextStroke: `5px ${p.ink}` }}
           >
             {data.uppercase}
           </span>
           <span
-            className="font-trace text-[3.2rem] leading-none font-bold sm:text-[4.5rem]"
-            style={{ color: "transparent", WebkitTextStroke: `2.5px ${p.ink}` }}
+            className="font-trace text-[3.4rem] leading-none font-bold sm:text-[5rem]"
+            style={{ color: "transparent", WebkitTextStroke: `4px ${p.ink}` }}
           >
             {data.lowercase}
           </span>
@@ -38,7 +38,7 @@ export function LetterTracingTemplate({
             <span
               key={i}
               className="font-trace text-2xl font-bold sm:text-4xl"
-              style={{ color: "transparent", WebkitTextStroke: `1.5px ${p.accent}`, opacity: 0.8 }}
+              style={{ color: "transparent", WebkitTextStroke: `2.5px ${p.accent}`, opacity: 0.8 }}
             >
               {i % 2 === 0 ? data.uppercase : data.lowercase}
             </span>

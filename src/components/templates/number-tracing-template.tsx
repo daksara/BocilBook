@@ -20,7 +20,7 @@ export function NumberTracingTemplate({
       <div className="flex flex-1 flex-col items-center justify-center gap-4">
         <span
           className="font-trace text-[6rem] leading-none font-bold sm:text-[8rem]"
-          style={{ color: "transparent", WebkitTextStroke: `3.5px ${p.ink}` }}
+          style={{ color: "transparent", WebkitTextStroke: `5px ${p.ink}` }}
         >
           {data.number}
         </span>
@@ -33,7 +33,7 @@ export function NumberTracingTemplate({
             <span
               key={i}
               className="font-trace text-2xl font-bold sm:text-3xl"
-              style={{ color: "transparent", WebkitTextStroke: `1.5px ${p.accent}`, opacity: 0.8 }}
+              style={{ color: "transparent", WebkitTextStroke: `2.5px ${p.accent}`, opacity: 0.8 }}
             >
               {data.number}
             </span>
