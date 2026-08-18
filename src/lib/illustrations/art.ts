@@ -11,14 +11,6 @@ const face = (p: ArtPalette, cx: number, cy: number, gap = 14) =>
 const fillOrNone = (p: ArtPalette, c: string) => (p.outlineOnly ? "none" : c);
 
 export const ART: Record<string, Builder> = {
-  goose: (p) => `
-    <ellipse cx="100" cy="128" rx="46" ry="38" fill="${fillOrNone(p, "#fff")}" stroke="${p.line}" stroke-width="${S}"/>
-    <path d="M 92 96 C 84 60 60 48 46 52" fill="none" stroke="${p.line}" stroke-width="${S}" stroke-linecap="round"/>
-    <circle cx="46" cy="52" r="18" fill="${fillOrNone(p, "#fff")}" stroke="${p.line}" stroke-width="${S}"/>
-    <path d="M 30 52 L 14 48 L 30 60 Z" fill="${fillOrNone(p, p.accent)}" stroke="${p.line}" stroke-width="${S * 0.7}" stroke-linejoin="round"/>
-    <circle cx="40" cy="46" r="3.5" fill="${p.line}"/>
-    <path d="M 66 150 L 66 168 M 92 154 L 92 170" stroke="${p.line}" stroke-width="${S}" stroke-linecap="round"/>
-  `,
   cat: (p) => `
     <circle cx="100" cy="112" r="52" fill="${fillOrNone(p, p.fill)}" stroke="${p.line}" stroke-width="${S}"/>
     <path d="M 62 76 L 50 40 L 86 66 Z" fill="${fillOrNone(p, p.fill)}" stroke="${p.line}" stroke-width="${S}" stroke-linejoin="round"/>
@@ -34,14 +26,6 @@ export const ART: Record<string, Builder> = {
     <path d="M 144 92 Q 166 96 162 138 Q 140 132 134 104 Z" fill="${fillOrNone(p, p.accent)}" stroke="${p.line}" stroke-width="${S}" stroke-linejoin="round"/>
     ${face(p, 100, 116, 16)}
     <ellipse cx="100" cy="138" rx="10" ry="7" fill="${p.line}"/>
-  `,
-  elephant: (p) => `
-    <ellipse cx="104" cy="110" rx="54" ry="46" fill="${fillOrNone(p, p.fill)}" stroke="${p.line}" stroke-width="${S}"/>
-    <circle cx="52" cy="86" r="26" fill="${fillOrNone(p, p.fill)}" stroke="${p.line}" stroke-width="${S}"/>
-    <path d="M 92 120 Q 80 160 96 172" fill="none" stroke="${p.line}" stroke-width="${S}" stroke-linecap="round"/>
-    <path d="M 148 100 Q 176 108 172 132 Q 156 132 150 116 Z" fill="${fillOrNone(p, p.accent)}" stroke="${p.line}" stroke-width="${S * 0.8}" stroke-linejoin="round"/>
-    <circle cx="118" cy="102" r="4.5" fill="${p.line}"/>
-    <circle cx="146" cy="102" r="4.5" fill="${p.line}"/>
   `,
   rabbit: (p) => `
     <ellipse cx="100" cy="132" rx="42" ry="38" fill="${fillOrNone(p, p.fill)}" stroke="${p.line}" stroke-width="${S}"/>
@@ -70,14 +54,6 @@ export const ART: Record<string, Builder> = {
     <path d="M 100 80 C 140 120 180 130 160 160 C 145 178 115 160 100 130 Z" fill="${fillOrNone(p, p.fill)}" stroke="${p.line}" stroke-width="${S}" stroke-linejoin="round"/>
     <rect x="96" y="55" width="8" height="90" rx="4" fill="${p.line}"/>
   `,
-  bee: (p) => `
-    <ellipse cx="100" cy="120" rx="40" ry="30" fill="${fillOrNone(p, "#FFD166")}" stroke="${p.line}" stroke-width="${S}"/>
-    <path d="M 70 104 L 130 104 M 68 120 L 132 120 M 72 136 L 128 136" stroke="${p.line}" stroke-width="6"/>
-    <ellipse cx="70" cy="90" rx="26" ry="18" fill="${fillOrNone(p, "#fff")}" stroke="${p.line}" stroke-width="3" opacity="${p.outlineOnly ? 0 : 0.85}" transform="rotate(-20 70 90)"/>
-    <ellipse cx="130" cy="90" rx="26" ry="18" fill="${fillOrNone(p, "#fff")}" stroke="${p.line}" stroke-width="3" opacity="${p.outlineOnly ? 0 : 0.85}" transform="rotate(20 130 90)"/>
-    <circle cx="88" cy="112" r="4" fill="${p.line}"/>
-    <circle cx="112" cy="112" r="4" fill="${p.line}"/>
-  `,
   frog: (p) => `
     <ellipse cx="100" cy="128" rx="48" ry="36" fill="${fillOrNone(p, p.fill)}" stroke="${p.line}" stroke-width="${S}"/>
     <circle cx="72" cy="82" r="18" fill="${fillOrNone(p, p.fill)}" stroke="${p.line}" stroke-width="${S}"/>
@@ -85,13 +61,6 @@ export const ART: Record<string, Builder> = {
     <circle cx="72" cy="82" r="6" fill="${p.line}"/>
     <circle cx="128" cy="82" r="6" fill="${p.line}"/>
     <path d="M 76 138 Q 100 152 124 138" stroke="${p.line}" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-  `,
-  lion: (p) => `
-    <circle cx="100" cy="110" r="36" fill="${fillOrNone(p, p.accent)}" stroke="${p.line}" stroke-width="${S}"/>
-    <circle cx="100" cy="110" r="58" fill="none" stroke="${p.line}" stroke-width="${S}"/>
-    <circle cx="100" cy="110" r="58" fill="${fillOrNone(p, p.fill)}" opacity="0.001"/>
-    ${face(p, 100, 108, 16)}
-    <path d="M 92 124 Q 100 130 108 124" stroke="${p.line}" stroke-width="3" fill="none" stroke-linecap="round"/>
   `,
   monkey: (p) => `
     <circle cx="100" cy="116" r="44" fill="${fillOrNone(p, p.fill)}" stroke="${p.line}" stroke-width="${S}"/>
@@ -104,7 +73,7 @@ export const ART: Record<string, Builder> = {
     <ellipse cx="100" cy="120" rx="50" ry="40" fill="${fillOrNone(p, "#fff")}" stroke="${p.line}" stroke-width="${S}"/>
     <path d="M 70 100 Q 60 84 76 78 Q 82 92 84 104 Z" fill="${fillOrNone(p, p.fill)}" stroke="${p.line}" stroke-width="3.5" stroke-linejoin="round"/>
     <path d="M 130 100 Q 140 84 124 78 Q 118 92 116 104 Z" fill="${fillOrNone(p, p.fill)}" stroke="${p.line}" stroke-width="3.5" stroke-linejoin="round"/>
-    <path d="M 54 84 L 44 66 M 146 84 L 156 66" stroke="${p.line}" stroke-width="${S}" stroke-linecap="round"/>
+    <path d="M 76 78 L 62 52 M 124 78 L 138 52" stroke="${p.line}" stroke-width="${S}" stroke-linecap="round"/>
     ${face(p, 100, 118, 16)}
     <ellipse cx="100" cy="140" rx="14" ry="9" fill="${fillOrNone(p, "#fff")}" stroke="${p.line}" stroke-width="3"/>
   `,
@@ -115,18 +84,6 @@ export const ART: Record<string, Builder> = {
     <path d="M 122 84 L 140 90 L 122 96 Z" fill="${fillOrNone(p, p.accent)}" stroke="${p.line}" stroke-width="3"/>
     <circle cx="108" cy="78" r="4" fill="${p.line}"/>
   `,
-  duck: (p) => `
-    <ellipse cx="98" cy="128" rx="46" ry="36" fill="${fillOrNone(p, p.accent)}" stroke="${p.line}" stroke-width="${S}"/>
-    <circle cx="70" cy="86" r="24" fill="${fillOrNone(p, p.accent)}" stroke="${p.line}" stroke-width="${S}"/>
-    <path d="M 48 88 L 26 84 L 48 98 Z" fill="${fillOrNone(p, "#FFA630")}" stroke="${p.line}" stroke-width="3"/>
-    <circle cx="78" cy="80" r="4" fill="${p.line}"/>
-  `,
-  turtle: (p) => `
-    <ellipse cx="100" cy="120" rx="50" ry="38" fill="${fillOrNone(p, p.accent)}" stroke="${p.line}" stroke-width="${S}"/>
-    <path d="M 70 108 L 100 96 L 130 108 L 116 132 L 84 132 Z" fill="${fillOrNone(p, p.fill)}" stroke="${p.line}" stroke-width="3.5" stroke-linejoin="round"/>
-    <circle cx="146" cy="112" r="16" fill="${fillOrNone(p, p.fill)}" stroke="${p.line}" stroke-width="${S}"/>
-    <circle cx="152" cy="108" r="3.5" fill="${p.line}"/>
-  `,
   bear: (p) => `
     <circle cx="100" cy="116" r="44" fill="${fillOrNone(p, p.fill)}" stroke="${p.line}" stroke-width="${S}"/>
     <circle cx="62" cy="78" r="16" fill="${fillOrNone(p, p.fill)}" stroke="${p.line}" stroke-width="${S}"/>
@@ -134,31 +91,21 @@ export const ART: Record<string, Builder> = {
     <ellipse cx="100" cy="122" rx="22" ry="16" fill="${fillOrNone(p, p.accent)}" stroke="${p.line}" stroke-width="3.5"/>
     ${face(p, 100, 110, 15)}
   `,
-  owl: (p) => `
-    <ellipse cx="100" cy="112" rx="46" ry="50" fill="${fillOrNone(p, p.fill)}" stroke="${p.line}" stroke-width="${S}"/>
-    <circle cx="78" cy="100" r="18" fill="${fillOrNone(p, "#fff")}" stroke="${p.line}" stroke-width="3.5"/>
-    <circle cx="122" cy="100" r="18" fill="${fillOrNone(p, "#fff")}" stroke="${p.line}" stroke-width="3.5"/>
-    <circle cx="78" cy="100" r="6" fill="${p.line}"/>
-    <circle cx="122" cy="100" r="6" fill="${p.line}"/>
-    <path d="M 92 118 L 100 130 L 108 118 Z" fill="${fillOrNone(p, p.accent)}" stroke="${p.line}" stroke-width="3"/>
-    <path d="M 70 66 L 82 84 M 130 66 L 118 84" stroke="${p.line}" stroke-width="${S}" stroke-linecap="round"/>
-  `,
-  sheep: (p) => `
-    <circle cx="80" cy="120" r="22" fill="${fillOrNone(p, "#fff")}" stroke="${p.line}" stroke-width="4"/>
-    <circle cx="112" cy="106" r="26" fill="${fillOrNone(p, "#fff")}" stroke="${p.line}" stroke-width="4"/>
-    <circle cx="130" cy="130" r="20" fill="${fillOrNone(p, "#fff")}" stroke="${p.line}" stroke-width="4"/>
-    <circle cx="96" cy="132" r="24" fill="${fillOrNone(p, "#fff")}" stroke="${p.line}" stroke-width="4"/>
-    <ellipse cx="150" cy="126" rx="18" ry="14" fill="${fillOrNone(p, p.fill)}" stroke="${p.line}" stroke-width="3.5"/>
-    <circle cx="156" cy="120" r="3.5" fill="${p.line}"/>
-  `,
   apple: (p) => `
     <path d="M 100 70 C 60 70 46 108 58 138 C 66 158 88 168 100 158 C 112 168 134 158 142 138 C 154 108 140 70 100 70 Z" fill="${fillOrNone(p, "#FF6B6B")}" stroke="${p.line}" stroke-width="${S}" stroke-linejoin="round"/>
     <path d="M 100 70 C 96 56 104 44 116 40" stroke="${p.line}" stroke-width="4" fill="none" stroke-linecap="round"/>
     <path d="M 108 52 Q 128 46 132 62 Q 114 66 108 52 Z" fill="${fillOrNone(p, "#4FCB8E")}" stroke="${p.line}" stroke-width="3"/>
   `,
   banana: (p) => `
-    <path d="M 60 150 C 40 110 60 60 110 46 C 108 56 100 62 100 62 C 130 60 148 88 140 118 C 128 156 90 172 60 150 Z" fill="${fillOrNone(p, "#FFD166")}" stroke="${p.line}" stroke-width="${S}" stroke-linejoin="round"/>
-    <circle cx="112" cy="48" r="6" fill="${fillOrNone(p, "#8a6a3a")}" stroke="${p.line}" stroke-width="2.5"/>
+    <g transform="rotate(120 100 100)">
+      <path d="M 78 32 C 128 42 162 78 158 114 C 154 146 122 166 76 168 C 92 146 100 118 94 96 C 89 74 82 52 78 32 Z" fill="${fillOrNone(p, "#FFD166")}" stroke="${p.line}" stroke-width="${S}" stroke-linejoin="round"/>
+      <path d="M 82 70 C 76 96 78 128 90 150" fill="none" stroke="${p.line}" stroke-width="2.5" opacity="0.5" stroke-linecap="round"/>
+      <path d="M 80 33 L 90 25 L 96 33 Z" fill="${fillOrNone(p, "#B5651D")}" stroke="${p.line}" stroke-width="2" stroke-linejoin="round"/>
+      <path d="M 108 92 L 100 108" stroke="#fff" stroke-width="6" stroke-linecap="round" opacity="${p.outlineOnly ? 0 : 0.75}"/>
+      <circle cx="118" cy="78" r="4" fill="#fff" opacity="${p.outlineOnly ? 0 : 0.75}"/>
+      <path d="M 82 167 L 78 190 L 58 190 L 60 165 Z" fill="${fillOrNone(p, "#8BC34A")}" stroke="${p.line}" stroke-width="3.5" stroke-linejoin="round"/>
+      <path d="M 62 178 L 76 176" stroke="${p.line}" stroke-width="2" opacity="0.45"/>
+    </g>
   `,
   orange: (p) => `
     <circle cx="100" cy="112" r="52" fill="${fillOrNone(p, "#FFA630")}" stroke="${p.line}" stroke-width="${S}"/>
@@ -288,13 +235,6 @@ export const ART: Record<string, Builder> = {
     <circle cx="152" cy="100" r="3.5" fill="${p.line}"/>
     <path d="M 76 138 L 66 154 M 92 144 L 86 160 M 112 144 L 118 160" stroke="${p.line}" stroke-width="4" stroke-linecap="round"/>
   `,
-  eagle: (p) => `
-    <path d="M 100 70 C 50 60 20 90 10 76 C 24 106 60 108 88 96 Z" fill="${fillOrNone(p, p.fill)}" stroke="${p.line}" stroke-width="${S}" stroke-linejoin="round"/>
-    <path d="M 100 70 C 150 60 180 90 190 76 C 176 106 140 108 112 96 Z" fill="${fillOrNone(p, p.accent)}" stroke="${p.line}" stroke-width="${S}" stroke-linejoin="round"/>
-    <circle cx="100" cy="88" r="24" fill="${fillOrNone(p, "#fff")}" stroke="${p.line}" stroke-width="${S}"/>
-    <path d="M 100 92 L 116 100 L 100 104 Z" fill="${fillOrNone(p, "#FFA630")}" stroke="${p.line}" stroke-width="3"/>
-    <circle cx="94" cy="84" r="3.5" fill="${p.line}"/>
-  `,
   tiger: (p) => `
     <circle cx="100" cy="112" r="50" fill="${fillOrNone(p, "#FFA630")}" stroke="${p.line}" stroke-width="${S}"/>
     <path d="M 58 76 L 48 44 L 82 64 Z" fill="${fillOrNone(p, "#FFA630")}" stroke="${p.line}" stroke-width="${S}" stroke-linejoin="round"/>
@@ -302,48 +242,6 @@ export const ART: Record<string, Builder> = {
     <path d="M 66 92 L 60 82 M 80 84 L 76 72 M 120 84 L 124 72 M 134 92 L 140 82" stroke="${p.line}" stroke-width="4" stroke-linecap="round"/>
     ${face(p, 100, 114, 16)}
     <path d="M 100 130 L 60 124 M 100 130 L 60 136 M 100 130 L 140 124 M 100 130 L 140 136" stroke="${p.line}" stroke-width="2.5" stroke-linecap="round"/>
-  `,
-  giraffe: (p) => `
-    <rect x="88" y="90" width="24" height="60" rx="10" fill="${fillOrNone(p, "#FFD166")}" stroke="${p.line}" stroke-width="${S}"/>
-    <circle cx="100" cy="70" r="30" fill="${fillOrNone(p, "#FFD166")}" stroke="${p.line}" stroke-width="${S}"/>
-    <path d="M 88 46 L 84 26 M 112 46 L 116 26" stroke="${p.line}" stroke-width="4.5" stroke-linecap="round"/>
-    <circle cx="84" cy="24" r="5" fill="${fillOrNone(p, p.accent)}" stroke="${p.line}" stroke-width="3"/>
-    <circle cx="116" cy="24" r="5" fill="${fillOrNone(p, p.accent)}" stroke="${p.line}" stroke-width="3"/>
-    <circle cx="88" cy="98" r="6" fill="${fillOrNone(p, p.accent)}"/>
-    <circle cx="112" cy="120" r="6" fill="${fillOrNone(p, p.accent)}"/>
-    <circle cx="90" cy="64" r="4" fill="${p.line}"/>
-    <circle cx="110" cy="64" r="4" fill="${p.line}"/>
-  `,
-  dragon: (p) => `
-    <ellipse cx="100" cy="120" rx="46" ry="34" fill="${fillOrNone(p, p.fill)}" stroke="${p.line}" stroke-width="${S}"/>
-    <path d="M 70 92 L 60 66 L 84 84 M 100 84 L 96 58 L 112 80 M 130 92 L 142 68 L 122 86" fill="${fillOrNone(p, p.accent)}" stroke="${p.line}" stroke-width="3.5" stroke-linejoin="round"/>
-    <circle cx="80" cy="116" r="4.5" fill="${p.line}"/>
-    <circle cx="120" cy="116" r="4.5" fill="${p.line}"/>
-    <path d="M 88 134 Q 100 142 112 134" stroke="${p.line}" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-    <path d="M 142 128 Q 168 132 166 110" fill="none" stroke="${p.line}" stroke-width="${S}" stroke-linecap="round"/>
-  `,
-  camel: (p) => `
-    <path d="M 60 140 Q 60 96 84 96 Q 92 96 92 108 Q 100 96 112 100 Q 122 96 128 108 Q 140 108 140 140 Z" fill="${fillOrNone(p, "#D9A06B")}" stroke="${p.line}" stroke-width="${S}" stroke-linejoin="round"/>
-    <path d="M 60 110 Q 44 108 42 92" fill="none" stroke="${p.line}" stroke-width="${S}" stroke-linecap="round"/>
-    <circle cx="40" cy="88" r="14" fill="${fillOrNone(p, "#D9A06B")}" stroke="${p.line}" stroke-width="4"/>
-    <circle cx="34" cy="84" r="3" fill="${p.line}"/>
-    <path d="M 78 140 L 78 156 M 120 140 L 120 156" stroke="${p.line}" stroke-width="${S}" stroke-linecap="round"/>
-  `,
-  deer: (p) => `
-    <ellipse cx="100" cy="128" rx="40" ry="30" fill="${fillOrNone(p, "#D9A06B")}" stroke="${p.line}" stroke-width="${S}"/>
-    <circle cx="100" cy="86" r="24" fill="${fillOrNone(p, "#D9A06B")}" stroke="${p.line}" stroke-width="${S}"/>
-    <path d="M 88 66 Q 76 40 60 44 M 88 66 Q 82 50 68 48" stroke="${p.line}" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-    <path d="M 112 66 Q 124 40 140 44 M 112 66 Q 118 50 132 48" stroke="${p.line}" stroke-width="3.5" fill="none" stroke-linecap="round"/>
-    <circle cx="90" cy="82" r="4" fill="${p.line}"/>
-    <circle cx="110" cy="82" r="4" fill="${p.line}"/>
-    <ellipse cx="100" cy="150" rx="10" ry="7" fill="${fillOrNone(p, "#fff")}" stroke="${p.line}" stroke-width="3"/>
-  `,
-  squirrel: (p) => `
-    <path d="M 130 140 Q 168 140 166 96 Q 164 70 138 78 Q 158 96 140 118 Z" fill="${fillOrNone(p, "#C9773E")}" stroke="${p.line}" stroke-width="${S}" stroke-linejoin="round"/>
-    <circle cx="90" cy="118" r="34" fill="${fillOrNone(p, "#C9773E")}" stroke="${p.line}" stroke-width="${S}"/>
-    <circle cx="66" cy="94" r="12" fill="${fillOrNone(p, "#C9773E")}" stroke="${p.line}" stroke-width="4"/>
-    <circle cx="82" cy="114" r="3.5" fill="${p.line}"/>
-    <ellipse cx="100" cy="128" rx="10" ry="7" fill="${fillOrNone(p, "#fff")}" opacity="${p.outlineOnly ? 0 : 0.7}"/>
   `,
   caterpillar: (p) => `
     <circle cx="46" cy="130" r="18" fill="${fillOrNone(p, "#8BC98A")}" stroke="${p.line}" stroke-width="4.5"/>
@@ -378,13 +276,6 @@ export const ART: Record<string, Builder> = {
     <circle cx="82" cy="102" r="4" fill="${p.line}"/>
     <circle cx="118" cy="102" r="4" fill="${p.line}"/>
     <path d="M 82 96 Q 100 92 118 96" fill="${fillOrNone(p, "#fff")}" stroke="none"/>
-  `,
-  horse: (p) => `
-    <ellipse cx="96" cy="130" rx="42" ry="28" fill="${fillOrNone(p, "#B08159")}" stroke="${p.line}" stroke-width="${S}"/>
-    <path d="M 118 100 C 118 76 140 62 148 68 C 138 76 138 88 142 96 C 148 100 150 112 140 116 Z" fill="${fillOrNone(p, "#B08159")}" stroke="${p.line}" stroke-width="${S}" stroke-linejoin="round"/>
-    <path d="M 122 70 Q 132 56 146 58" fill="${fillOrNone(p, "#5C4A3A")}" stroke="${p.line}" stroke-width="3" stroke-linejoin="round"/>
-    <circle cx="136" cy="86" r="3.5" fill="${p.line}"/>
-    <path d="M 62 130 L 60 150 M 88 138 L 86 156" stroke="${p.line}" stroke-width="${S}" stroke-linecap="round"/>
   `,
   pig: (p) => `
     <ellipse cx="100" cy="118" rx="46" ry="38" fill="${fillOrNone(p, "#FFB6C9")}" stroke="${p.line}" stroke-width="${S}"/>
@@ -498,12 +389,6 @@ export const ART: Record<string, Builder> = {
     <path d="M 100 50 L 148 100 L 100 100 Z" fill="${fillOrNone(p, "#fff")}" stroke="${p.line}" stroke-width="3.5" stroke-linejoin="round"/>
     <path d="M 100 60 L 60 100 L 100 100 Z" fill="${fillOrNone(p, p.accent)}" stroke="${p.line}" stroke-width="3.5" stroke-linejoin="round"/>
   `,
-  rainbow: (p) => `
-    <path d="M 30 150 A 70 70 0 0 1 170 150" fill="none" stroke="${fillOrNone(p, "#FF6B6B")}" stroke-width="12"/>
-    <path d="M 44 150 A 56 56 0 0 1 156 150" fill="none" stroke="${fillOrNone(p, "#FFD166")}" stroke-width="12"/>
-    <path d="M 58 150 A 42 42 0 0 1 142 150" fill="none" stroke="${fillOrNone(p, "#4FCB8E")}" stroke-width="12"/>
-    <path d="M 72 150 A 28 28 0 0 1 128 150" fill="none" stroke="${fillOrNone(p, "#4FB6E8")}" stroke-width="12"/>
-  `,
   leaf: (p) => `
     <path d="M100 160 C 40 150 34 70 100 40 C 166 70 160 150 100 160 Z" fill="${fillOrNone(p, "#4FCB8E")}" stroke="${p.line}" stroke-width="${S}" stroke-linejoin="round"/>
     <path d="M 100 160 L 100 60" stroke="${p.line}" stroke-width="3.5" fill="none"/>
@@ -536,24 +421,6 @@ export const ART: Record<string, Builder> = {
     <path d="M 30 140 L 30 112 Q 30 100 44 100 L 80 100 L 116 78 Q 128 72 138 82 L 160 104 Q 170 114 170 128 L 170 140 Z" fill="${fillOrNone(p, p.fill)}" stroke="${p.line}" stroke-width="${S}" stroke-linejoin="round"/>
     <path d="M 30 140 L 170 140" stroke="${p.line}" stroke-width="4"/>
     <path d="M 80 100 L 108 100" stroke="${p.line}" stroke-width="3" opacity="0.6"/>
-  `,
-  panda: (p) => `
-    <circle cx="100" cy="116" r="44" fill="${fillOrNone(p, "#fff")}" stroke="${p.line}" stroke-width="${S}"/>
-    <circle cx="62" cy="78" r="16" fill="${fillOrNone(p, "#2B2B2B")}" stroke="${p.line}" stroke-width="${S}"/>
-    <circle cx="138" cy="78" r="16" fill="${fillOrNone(p, "#2B2B2B")}" stroke="${p.line}" stroke-width="${S}"/>
-    <ellipse cx="78" cy="112" rx="14" ry="17" fill="${fillOrNone(p, "#2B2B2B")}"/>
-    <ellipse cx="122" cy="112" rx="14" ry="17" fill="${fillOrNone(p, "#2B2B2B")}"/>
-    <circle cx="78" cy="114" r="4.5" fill="${fillOrNone(p, "#fff")}"/>
-    <circle cx="122" cy="114" r="4.5" fill="${fillOrNone(p, "#fff")}"/>
-    <ellipse cx="100" cy="130" rx="10" ry="7" fill="${fillOrNone(p, "#2B2B2B")}"/>
-  `,
-  flamingo: (p) => `
-    <ellipse cx="90" cy="120" rx="30" ry="24" fill="${fillOrNone(p, "#FF8FA8")}" stroke="${p.line}" stroke-width="${S}"/>
-    <path d="M 108 106 Q 130 60 110 40 Q 128 44 138 30" fill="none" stroke="${p.line}" stroke-width="${S}" stroke-linecap="round"/>
-    <circle cx="112" cy="42" r="12" fill="${fillOrNone(p, "#FF8FA8")}" stroke="${p.line}" stroke-width="4"/>
-    <path d="M 124 42 L 140 38 L 124 48 Z" fill="${fillOrNone(p, "#2B2B2B")}" stroke="${p.line}" stroke-width="2.5"/>
-    <circle cx="116" cy="38" r="2.5" fill="${p.line}"/>
-    <path d="M 82 144 L 78 168 M 82 144 L 90 168" stroke="${p.line}" stroke-width="4" stroke-linecap="round"/>
   `,
   vas: (p) => `
     <path d="M 78 70 Q 70 100 78 120 Q 60 132 62 152 Q 64 166 100 166 Q 136 166 138 152 Q 140 132 122 120 Q 130 100 122 70 Z" fill="${fillOrNone(p, p.fill)}" stroke="${p.line}" stroke-width="${S}" stroke-linejoin="round"/>
