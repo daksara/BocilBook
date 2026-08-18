@@ -97,8 +97,8 @@ export const ART: Record<string, Builder> = {
     <path d="M 108 52 Q 128 46 132 62 Q 114 66 108 52 Z" fill="${fillOrNone(p, "#4FCB8E")}" stroke="${p.line}" stroke-width="3"/>
   `,
   banana: (p) => `
-    <path d="M 60 150 C 40 110 60 60 110 46 C 108 56 100 62 100 62 C 130 60 148 88 140 118 C 128 156 90 172 60 150 Z" fill="${fillOrNone(p, "#FFD166")}" stroke="${p.line}" stroke-width="${S}" stroke-linejoin="round"/>
-    <circle cx="112" cy="48" r="6" fill="${fillOrNone(p, "#8a6a3a")}" stroke="${p.line}" stroke-width="2.5"/>
+    <path d="M 78 32 C 128 42 162 78 158 114 C 154 146 122 166 76 168 C 92 146 100 118 94 96 C 89 74 82 52 78 32 Z" fill="${fillOrNone(p, "#FFD166")}" stroke="${p.line}" stroke-width="${S}" stroke-linejoin="round"/>
+    <path d="M 76 34 Q 66 24 74 14" fill="none" stroke="${p.line}" stroke-width="4" stroke-linecap="round"/>
   `,
   orange: (p) => `
     <circle cx="100" cy="112" r="52" fill="${fillOrNone(p, "#FFA630")}" stroke="${p.line}" stroke-width="${S}"/>
