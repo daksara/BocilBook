@@ -25,8 +25,8 @@ const MID_DEFAULT: ActivityType[] = [
   "find-circle",
   "coloring",
   "animal-classification",
-  "shape recognition" as ActivityType,
-].filter((a) => a in ACTIVITY_TO_PAGE_TYPES) as ActivityType[];
+  "puzzle",
+];
 const OLDER_DEFAULT: ActivityType[] = [
   "tracing",
   "counting",
@@ -41,7 +41,7 @@ const OLDER_DEFAULT: ActivityType[] = [
 
 function defaultActivitiesForAge(age: AgeRange): ActivityType[] {
   if (age === "2-3" || age === "3-5") return YOUNG_DEFAULT;
-  if (age === "5-7") return MID_DEFAULT.length ? MID_DEFAULT : YOUNG_DEFAULT;
+  if (age === "5-7") return MID_DEFAULT;
   return OLDER_DEFAULT;
 }
 
