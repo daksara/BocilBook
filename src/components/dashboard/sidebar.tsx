@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import { Logo } from "@/components/shared/logo";
 import { NAV_ITEMS } from "./nav-config";
-import { CreditsWidget } from "./credits-widget";
+import { AILimitsWidget } from "./ai-limits-widget";
 import { UserMenu } from "./user-menu";
 
 export function Sidebar() {
@@ -46,10 +46,10 @@ export function Sidebar() {
 
       <div className="flex flex-col items-center gap-3 lg:items-stretch">
         <span className="lg:hidden">
-          <CreditsWidget compact />
+          <AILimitsWidget compact />
         </span>
         <span className="hidden w-full lg:block">
-          <CreditsWidget />
+          <AILimitsWidget />
         </span>
         <UserMenu />
       </div>

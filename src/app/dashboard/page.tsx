@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { useMemo } from "react";
 import { useBookStore } from "@/lib/store/book-store";
 import { MOCK_USER } from "@/lib/data/mock-user";
+import { AI_LIMITS } from "@/lib/data/ai-limits";
 
 export default function DashboardPage() {
   const booksMap = useBookStore((s) => s.books);
@@ -37,7 +38,7 @@ export default function DashboardPage() {
         <div className="mb-8 grid gap-4 sm:grid-cols-3">
           <StatCard label="Total Buku" value={books.length} />
           <StatCard label="Halaman Dibuat" value={books.reduce((acc, b) => acc + b.pages.length, 0)} />
-          <StatCard label="Kredit AI Tersisa" value={68} icon />
+          <StatCard label="Limit Groq (req/menit)" value={AI_LIMITS[0].requestsPerMinute} icon />
         </div>
 
         <div className="mb-4 flex items-center justify-between">

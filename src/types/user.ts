@@ -6,11 +6,15 @@ export interface User {
   plan: "free" | "pro" | "studio";
 }
 
-export interface Credit {
-  balance: number;
-  monthlyAllowance: number;
-  usedThisMonth: number;
-  resetsAt: string;
+export interface AIProviderLimit {
+  id: "groq" | "gemini";
+  name: string;
+  model: string;
+  role: "Utama" | "Fallback";
+  requestsPerMinute: number;
+  requestsPerDay: number;
+  tokensPerMinute: number;
+  docsUrl: string;
 }
 
 export interface Template {
