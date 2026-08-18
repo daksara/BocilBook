@@ -19,6 +19,7 @@ const SYNONYMS: Record<string, string> = {
   sapi: "cow",
   ayam: "chicken",
   beruang: "bear",
+  gajah: "elephant",
   apel: "apple",
   pisang: "banana",
   jeruk: "orange",

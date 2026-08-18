@@ -91,6 +91,37 @@ export const ART: Record<string, Builder> = {
     <ellipse cx="100" cy="122" rx="22" ry="16" fill="${fillOrNone(p, p.accent)}" stroke="${p.line}" stroke-width="3.5"/>
     ${face(p, 100, 110, 15)}
   `,
+  elephant: (p) => `
+    <ellipse cx="100" cy="122" rx="48" ry="42" fill="${fillOrNone(p, "#B7B7C0")}" stroke="${p.line}" stroke-width="${S}"/>
+    <circle cx="56" cy="96" r="26" fill="${fillOrNone(p, "#B7B7C0")}" stroke="${p.line}" stroke-width="4"/>
+    <circle cx="144" cy="96" r="26" fill="${fillOrNone(p, "#B7B7C0")}" stroke="${p.line}" stroke-width="4"/>
+    <path d="M 92 132 Q 84 160 96 176 Q 104 182 108 172" fill="none" stroke="${p.line}" stroke-width="${S}" stroke-linecap="round"/>
+    <circle cx="86" cy="104" r="4" fill="${p.line}"/>
+    <circle cx="114" cy="104" r="4" fill="${p.line}"/>
+    <path d="M 88 128 Q 100 136 112 128" stroke="${p.line}" stroke-width="3" fill="none" stroke-linecap="round"/>
+  `,
+  flamingo: (p) => `
+    <ellipse cx="88" cy="142" rx="34" ry="26" fill="${fillOrNone(p, "#FF8FA8")}" stroke="${p.line}" stroke-width="${S}"/>
+    <path d="M 106 122 Q 132 96 106 72 Q 88 54 110 44" fill="none" stroke="${p.line}" stroke-width="${S}" stroke-linecap="round"/>
+    <circle cx="110" cy="44" r="14" fill="${fillOrNone(p, "#FF8FA8")}" stroke="${p.line}" stroke-width="4"/>
+    <path d="M 120 46 L 138 42 L 124 52 Z" fill="${fillOrNone(p, "#333")}" stroke="${p.line}" stroke-width="2.5" stroke-linejoin="round"/>
+    <circle cx="114" cy="40" r="2.5" fill="${p.line}"/>
+    <path d="M 88 166 L 84 190 M 84 190 L 74 190 M 84 190 L 92 186" stroke="${p.line}" stroke-width="4" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  `,
+  jelly: (p) => `
+    <path d="M 100 60 C 60 60 50 100 60 118 Q 100 138 140 118 C 150 100 140 60 100 60 Z" fill="${fillOrNone(p, "#C9A8F0")}" stroke="${p.line}" stroke-width="${S}" stroke-linejoin="round"/>
+    <path d="M 66 118 Q 62 140 70 160 M 86 122 Q 84 146 90 168 M 100 124 Q 100 148 100 172 M 114 122 Q 116 146 110 168 M 134 118 Q 138 140 130 160" stroke="${p.line}" stroke-width="4" fill="none" stroke-linecap="round"/>
+    <circle cx="84" cy="92" r="4" fill="${p.line}"/>
+    <circle cx="116" cy="92" r="4" fill="${p.line}"/>
+    <path d="M 90 104 Q 100 110 110 104" stroke="${p.line}" stroke-width="3" fill="none" stroke-linecap="round"/>
+  `,
+  nest: (p) => `
+    <path d="M 40 130 Q 100 108 160 130 Q 150 150 100 154 Q 50 150 40 130 Z" fill="${fillOrNone(p, "#B08159")}" stroke="${p.line}" stroke-width="${S}" stroke-linejoin="round"/>
+    <path d="M 52 128 Q 100 118 148 128 M 58 138 Q 100 130 142 138" stroke="${p.line}" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.6"/>
+    <ellipse cx="82" cy="116" rx="16" ry="20" fill="${fillOrNone(p, "#EAF6FF")}" stroke="${p.line}" stroke-width="3.5"/>
+    <ellipse cx="112" cy="112" rx="16" ry="20" fill="${fillOrNone(p, "#FFE8B0")}" stroke="${p.line}" stroke-width="3.5"/>
+    <ellipse cx="100" cy="120" rx="15" ry="19" fill="${fillOrNone(p, "#FFD1DC")}" stroke="${p.line}" stroke-width="3.5"/>
+  `,
   apple: (p) => `
     <path d="M 100 70 C 60 70 46 108 58 138 C 66 158 88 168 100 158 C 112 168 134 158 142 138 C 154 108 140 70 100 70 Z" fill="${fillOrNone(p, "#FF6B6B")}" stroke="${p.line}" stroke-width="${S}" stroke-linejoin="round"/>
     <path d="M 100 70 C 96 56 104 44 116 40" stroke="${p.line}" stroke-width="4" fill="none" stroke-linecap="round"/>
