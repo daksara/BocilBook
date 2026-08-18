@@ -106,3 +106,44 @@ export function IllustrationTile({
     </div>
   );
 }
+
+/**
+ * A letter/digit for tracing or coloring, rendered as SVG text with a white
+ * fill and the outline stroke painted underneath (paintOrder="stroke").
+ * This is what makes an enclosed counter (e.g. the crossbar gap in "A")
+ * read as a clean blank hole instead of a second nested outline — plain
+ * CSS `-webkit-text-stroke` (fill: transparent, stroke only) draws both the
+ * outer silhouette AND the inner counter as separate black lines, which
+ * looks like two overlapping letters.
+ */
+export function TraceGlyph({
+  children,
+  color,
+  strokeWidth = 6,
+  className,
+}: {
+  children: string | number;
+  color: string;
+  strokeWidth?: number;
+  className?: string;
+}) {
+  return (
+    <svg viewBox="0 0 100 100" className={className} aria-hidden="true">
+      <text
+        x="50"
+        y="74"
+        textAnchor="middle"
+        fontSize="76"
+        className="font-trace font-bold"
+        fill="#fff"
+        stroke={color}
+        strokeWidth={strokeWidth}
+        strokeLinejoin="round"
+        strokeLinecap="round"
+        paintOrder="stroke"
+      >
+        {children}
+      </text>
+    </svg>
+  );
+}
