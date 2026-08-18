@@ -6,7 +6,6 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Progress } from "@/components/ui/progress";
 import {
   Select,
   SelectContent,
@@ -17,8 +16,9 @@ import {
 import { Separator } from "@/components/ui/separator";
 import { Switch } from "@/components/ui/switch";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { MOCK_CREDIT, MOCK_USER } from "@/lib/data/mock-user";
-import { Check, Sparkles } from "lucide-react";
+import { MOCK_USER } from "@/lib/data/mock-user";
+import { AI_LIMITS } from "@/lib/data/ai-limits";
+import { ArrowUpRight, Sparkles } from "lucide-react";
 
 const initials = MOCK_USER.name
   .split(" ")
@@ -26,27 +26,19 @@ const initials = MOCK_USER.name
   .slice(0, 2)
   .join("");
 
-const PLANS = [
-  { id: "free", name: "Free", price: "Rp0", credits: "20 kredit/bulan", features: ["Watermark BocilBook", "Export PDF"] },
-  { id: "pro", name: "Pro", price: "Rp79rb/bulan", credits: "100 kredit/bulan", features: ["Tanpa watermark", "Export PDF, PNG, ZIP", "Prioritas generation"] },
-  { id: "studio", name: "Studio", price: "Rp249rb/bulan", credits: "500 kredit/bulan", features: ["Semua fitur Pro", "Multi anggota tim", "Lisensi komersial"] },
-];
-
 export default function SettingsPage() {
-  const creditPct = Math.round((MOCK_CREDIT.usedThisMonth / MOCK_CREDIT.monthlyAllowance) * 100);
-
   return (
     <AppShell>
       <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
         <div className="mb-8">
           <h1 className="font-display text-2xl font-extrabold sm:text-3xl">Settings</h1>
-          <p className="mt-1 text-muted-foreground">Kelola profil, kredit AI, dan preferensi akunmu.</p>
+          <p className="mt-1 text-muted-foreground">Kelola profil, limit AI, dan preferensi akunmu.</p>
         </div>
 
         <Tabs defaultValue="profile">
           <TabsList className="mb-6">
             <TabsTrigger value="profile">Profil</TabsTrigger>
-            <TabsTrigger value="credits">Kredit AI</TabsTrigger>
+            <TabsTrigger value="ai-limits">Limit AI</TabsTrigger>
             <TabsTrigger value="preferences">Preferensi</TabsTrigger>
           </TabsList>
 
@@ -77,45 +69,54 @@ export default function SettingsPage() {
             </div>
           </TabsContent>
 
-          <TabsContent value="credits" className="flex flex-col gap-6">
-            <div className="rounded-2xl border border-border/70 bg-card p-6">
-              <div className="mb-3 flex items-center justify-between">
-                <span className="inline-flex items-center gap-2 font-display font-bold">
-                  <Sparkles className="size-4 text-primary" /> Kredit AI
-                </span>
-                <span className="font-display text-2xl font-extrabold text-primary">{MOCK_CREDIT.balance}</span>
-              </div>
-              <Progress value={creditPct} className="mb-2" />
-              <p className="text-sm text-muted-foreground">
-                {MOCK_CREDIT.usedThisMonth} dari {MOCK_CREDIT.monthlyAllowance} kredit terpakai bulan ini. Reset {new Date(MOCK_CREDIT.resetsAt).toLocaleDateString("id-ID", { day: "numeric", month: "long" })}.
-              </p>
-            </div>
+          <TabsContent value="ai-limits" className="flex flex-col gap-6">
+            <p className="text-sm text-muted-foreground">
+              BocilBook memakai Groq sebagai penulis teks utama dan Gemini sebagai cadangan (lihat{" "}
+              <code className="rounded bg-muted px-1 py-0.5 text-xs">src/lib/ai/llm/index.ts</code>). Ini limit tier gratis
+              masing-masing — kalau limit tercapai, request otomatis jatuh ke provider berikutnya, lalu ke generator mock
+              deterministik supaya buku tetap bisa dibuat.
+            </p>
 
-            <div className="grid gap-4 sm:grid-cols-3">
-              {PLANS.map((plan) => (
-                <div
-                  key={plan.id}
-                  className={`flex flex-col gap-3 rounded-2xl border p-5 ${plan.id === MOCK_USER.plan ? "border-primary bg-primary/5" : "border-border/70 bg-card"}`}
-                >
+            <div className="grid gap-4 sm:grid-cols-2">
+              {AI_LIMITS.map((p) => (
+                <div key={p.id} className="flex flex-col gap-3 rounded-2xl border border-border/70 bg-card p-5">
                   <div className="flex items-center justify-between">
-                    <span className="font-display font-bold">{plan.name}</span>
-                    {plan.id === MOCK_USER.plan && <Badge>Aktif</Badge>}
+                    <span className="inline-flex items-center gap-2 font-display font-bold">
+                      <Sparkles className="size-4 text-primary" /> {p.name}
+                    </span>
+                    <Badge variant={p.role === "Utama" ? "default" : "outline"}>{p.role}</Badge>
                   </div>
-                  <span className="font-display text-xl font-extrabold">{plan.price}</span>
-                  <span className="text-xs text-muted-foreground">{plan.credits}</span>
-                  <ul className="flex flex-col gap-1.5 text-sm">
-                    {plan.features.map((f) => (
-                      <li key={f} className="flex items-center gap-2 text-muted-foreground">
-                        <Check className="size-3.5 text-primary" /> {f}
-                      </li>
-                    ))}
-                  </ul>
-                  <Button variant={plan.id === MOCK_USER.plan ? "outline" : "default"} className="mt-2" disabled={plan.id === MOCK_USER.plan}>
-                    {plan.id === MOCK_USER.plan ? "Plan Saat Ini" : "Upgrade"}
-                  </Button>
+                  <span className="text-xs text-muted-foreground">Model: {p.model}</span>
+                  <dl className="grid grid-cols-3 gap-2 text-center">
+                    <div className="rounded-xl bg-muted/60 p-2.5">
+                      <dt className="text-[11px] text-muted-foreground">Req/menit</dt>
+                      <dd className="font-display text-lg font-extrabold">{p.requestsPerMinute}</dd>
+                    </div>
+                    <div className="rounded-xl bg-muted/60 p-2.5">
+                      <dt className="text-[11px] text-muted-foreground">Req/hari</dt>
+                      <dd className="font-display text-lg font-extrabold">{p.requestsPerDay.toLocaleString("id-ID")}</dd>
+                    </div>
+                    <div className="rounded-xl bg-muted/60 p-2.5">
+                      <dt className="text-[11px] text-muted-foreground">Token/menit</dt>
+                      <dd className="font-display text-lg font-extrabold">{p.tokensPerMinute.toLocaleString("id-ID")}</dd>
+                    </div>
+                  </dl>
+                  <a
+                    href={p.docsUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="inline-flex items-center gap-1 text-xs font-semibold text-primary hover:underline"
+                  >
+                    Cek limit terbaru di dokumentasi {p.name} <ArrowUpRight className="size-3" />
+                  </a>
                 </div>
               ))}
             </div>
+
+            <p className="text-xs text-muted-foreground">
+              Angka di atas mengikuti dokumentasi resmi masing-masing provider dan bisa berubah sewaktu-waktu — cek link di
+              atas untuk angka yang berlaku di akunmu.
+            </p>
           </TabsContent>
 
           <TabsContent value="preferences" className="flex flex-col gap-6">
