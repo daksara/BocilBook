@@ -5,31 +5,20 @@ import { pickPalette, type ArtPalette } from "./palette";
 
 /** Indonesian / colloquial synonyms mapped to the canonical art dictionary keys. */
 const SYNONYMS: Record<string, string> = {
-  angsa: "goose",
   kucing: "cat",
   anjing: "dog",
-  gajah: "elephant",
   kelinci: "rabbit",
   ikan: "fish",
   burung: "bird",
   "kupu-kupu": "butterfly",
   kupu: "butterfly",
-  lebah: "bee",
   katak: "frog",
   kodok: "frog",
-  singa: "lion",
   monyet: "monkey",
   kera: "monkey",
   sapi: "cow",
   ayam: "chicken",
-  bebek: "duck",
-  itik: "duck",
-  "kura-kura": "turtle",
-  kura: "turtle",
   beruang: "bear",
-  hantu: "owl",
-  domba: "sheep",
-  kambing: "sheep",
   apel: "apple",
   pisang: "banana",
   jeruk: "orange",
@@ -65,19 +54,11 @@ const SYNONYMS: Record<string, string> = {
   berlian: "diamond",
   cicak: "gecko",
   cecak: "gecko",
-  elang: "eagle",
   harimau: "tiger",
-  jerapah: "giraffe",
-  naga: "dragon",
-  onta: "camel",
-  unta: "camel",
-  rusa: "deer",
-  tupai: "squirrel",
   ulat: "caterpillar",
   wortel: "carrot",
   pinguin: "penguin",
   rubah: "fox",
-  kuda: "horse",
   babi: "pig",
   tikus: "mouse",
   siput: "snail",
@@ -87,7 +68,6 @@ const SYNONYMS: Record<string, string> = {
   pesawat: "airplane",
   perahu: "boat",
   kapal: "boat",
-  pelangi: "rainbow",
   daun: "leaf",
   jamur: "mushroom",
   jam: "clock",
@@ -111,7 +91,7 @@ function resolveArtKey(subject: string): string | null {
   const direct = findArtKey(slug);
   if (direct) return direct;
   for (const [alias, key] of Object.entries(SYNONYMS)) {
-    if (slug.includes(alias)) return key;
+    if (slug.includes(alias) && ART[key]) return key;
   }
   return null;
 }
