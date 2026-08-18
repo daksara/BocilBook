@@ -4,6 +4,18 @@ import { create } from "zustand";
 import type { Book, Page } from "@/types";
 import { generateFullBook } from "@/lib/ai/generate-book";
 import { getSampleBook } from "@/lib/data/sample-book";
+import { deleteBookFromSupabase, fetchBooksFromSupabase, upsertBookToSupabase } from "@/lib/supabase/books-repo";
+import { isSupabaseConfigured } from "@/lib/supabase/config";
+
+const DEMO_OWNER_ID = "demo-user";
+
+function persistBook(book: Book | undefined) {
+  if (book) void upsertBookToSupabase(book);
+}
+
+function persistDelete(id: string) {
+  void deleteBookFromSupabase(id);
+}
 
 // Fixed anchor (not Date.now()) so seeded timestamps are identical on server
 // and client renders — avoids SSR/hydration mismatches in relative-time labels.
@@ -111,19 +123,26 @@ function initialBooks(): Record<string, Book> {
 export const useBookStore = create<BookStore>((set, get) => ({
   books: initialBooks(),
   getBook: (id) => get().books[id],
-  addBook: (book) => set((s) => ({ books: { ...s.books, [book.id]: book } })),
-  updateBook: (id, updater) =>
+  addBook: (book) => {
+    set((s) => ({ books: { ...s.books, [book.id]: book } }));
+    persistBook(get().books[book.id]);
+  },
+  updateBook: (id, updater) => {
     set((s) => {
       const book = s.books[id];
       if (!book) return s;
       return { books: { ...s.books, [id]: { ...updater(book), updatedAt: new Date().toISOString() } } };
-    }),
-  deleteBook: (id) =>
+    });
+    persistBook(get().books[id]);
+  },
+  deleteBook: (id) => {
     set((s) => {
       const next = { ...s.books };
       delete next[id];
       return { books: next };
-    }),
+    });
+    persistDelete(id);
+  },
   duplicateBook: (id) => {
     const book = get().books[id];
     if (!book) return undefined;
@@ -135,35 +154,44 @@ export const useBookStore = create<BookStore>((set, get) => ({
       updatedAt: new Date().toISOString(),
     };
     set((s) => ({ books: { ...s.books, [copy.id]: copy } }));
+    persistBook(copy);
     return copy;
   },
-  updatePage: (bookId, pageId, updater) =>
+  updatePage: (bookId, pageId, updater) => {
     set((s) => {
       const book = s.books[bookId];
       if (!book) return s;
       const pages = book.pages.map((p) => (p.id === pageId ? updater(p) : p));
       return { books: { ...s.books, [bookId]: { ...book, pages, updatedAt: new Date().toISOString() } } };
-    }),
-  replacePage: (bookId, pageId, page) =>
+    });
+    persistBook(get().books[bookId]);
+  },
+  replacePage: (bookId, pageId, page) => {
     set((s) => {
       const book = s.books[bookId];
       if (!book) return s;
       const pages = book.pages.map((p) => (p.id === pageId ? page : p));
       return { books: { ...s.books, [bookId]: { ...book, pages, updatedAt: new Date().toISOString() } } };
-    }),
-  setPages: (bookId, pages) =>
+    });
+    persistBook(get().books[bookId]);
+  },
+  setPages: (bookId, pages) => {
     set((s) => {
       const book = s.books[bookId];
       if (!book) return s;
       return { books: { ...s.books, [bookId]: { ...book, pages, updatedAt: new Date().toISOString() } } };
-    }),
-  renameBook: (bookId, title) =>
+    });
+    persistBook(get().books[bookId]);
+  },
+  renameBook: (bookId, title) => {
     set((s) => {
       const book = s.books[bookId];
       if (!book) return s;
       return { books: { ...s.books, [bookId]: { ...book, title, updatedAt: new Date().toISOString() } } };
-    }),
-  addPage: (bookId, page, atIndex) =>
+    });
+    persistBook(get().books[bookId]);
+  },
+  addPage: (bookId, page, atIndex) => {
     set((s) => {
       const book = s.books[bookId];
       if (!book) return s;
@@ -171,15 +199,19 @@ export const useBookStore = create<BookStore>((set, get) => ({
       const idx = atIndex ?? pages.length;
       pages.splice(idx, 0, page);
       return { books: { ...s.books, [bookId]: { ...book, pages: renumber(pages), updatedAt: new Date().toISOString() } } };
-    }),
-  deletePage: (bookId, pageId) =>
+    });
+    persistBook(get().books[bookId]);
+  },
+  deletePage: (bookId, pageId) => {
     set((s) => {
       const book = s.books[bookId];
       if (!book) return s;
       const pages = book.pages.filter((p) => p.id !== pageId);
       return { books: { ...s.books, [bookId]: { ...book, pages: renumber(pages), updatedAt: new Date().toISOString() } } };
-    }),
-  duplicatePage: (bookId, pageId) =>
+    });
+    persistBook(get().books[bookId]);
+  },
+  duplicatePage: (bookId, pageId) => {
     set((s) => {
       const book = s.books[bookId];
       if (!book) return s;
@@ -192,8 +224,10 @@ export const useBookStore = create<BookStore>((set, get) => ({
       const pages = [...book.pages];
       pages.splice(idx + 1, 0, copy);
       return { books: { ...s.books, [bookId]: { ...book, pages: renumber(pages), updatedAt: new Date().toISOString() } } };
-    }),
-  reorderPages: (bookId, fromIndex, toIndex) =>
+    });
+    persistBook(get().books[bookId]);
+  },
+  reorderPages: (bookId, fromIndex, toIndex) => {
     set((s) => {
       const book = s.books[bookId];
       if (!book) return s;
@@ -201,5 +235,20 @@ export const useBookStore = create<BookStore>((set, get) => ({
       const [moved] = pages.splice(fromIndex, 1);
       pages.splice(toIndex, 0, moved);
       return { books: { ...s.books, [bookId]: { ...book, pages: renumber(pages), updatedAt: new Date().toISOString() } } };
-    }),
+    });
+    persistBook(get().books[bookId]);
+  },
 }));
+
+if (typeof window !== "undefined" && isSupabaseConfigured()) {
+  fetchBooksFromSupabase(DEMO_OWNER_ID)
+    .then((remoteBooks) => {
+      if (!remoteBooks.length) return;
+      useBookStore.setState((s) => {
+        const books = { ...s.books };
+        for (const book of remoteBooks) books[book.id] = book;
+        return { books };
+      });
+    })
+    .catch((err) => console.warn("[supabase] hydrate failed:", err));
+}
