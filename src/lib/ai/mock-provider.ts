@@ -8,7 +8,7 @@ import type {
 } from "@/types";
 import { buildPageData, illustrationPrompt, makeIllustration, pageTitleFor } from "./content-builder";
 import { deriveBookTitle, generateFullBook } from "./generate-book";
-import { resolveTopicSubjects, pick } from "./content-pools";
+import { resolveTopicSubjects, pick, shuffle, TOPIC_IDEA_SUBJECTS, TOPIC_IDEA_TEMPLATES } from "./content-pools";
 import {
   applyToIllustrations,
   getInstruction,
@@ -174,6 +174,21 @@ export class MockAIProvider implements AIProvider {
     const difficulty = config.difficulty ?? "medium";
     const difficultyLabel = { easy: "mudah", medium: "menengah", advanced: "menantang" }[difficulty];
     return `${trimmed} Gunakan bahasa yang hangat dan ramah anak, sesuaikan dengan ${age}, jaga tingkat kesulitan tetap ${difficultyLabel}, dan pastikan setiap instruksi aktivitas singkat serta mudah dipahami.`;
+  }
+
+  async suggestTopics(config: Partial<BookConfig>): Promise<string[]> {
+    await this.delay(300);
+    const bookType = config.bookType ?? "workbook";
+    const lang = config.language === "en" ? "en" : "id";
+    const age = config.ageRange ?? "3-5";
+    const seed = Date.now();
+
+    const templates = TOPIC_IDEA_TEMPLATES[bookType];
+    const subjects = shuffle(TOPIC_IDEA_SUBJECTS, seed).slice(0, 6);
+    return subjects.map((subject, i) => {
+      const template = pick(templates, seed + i);
+      return template[lang].replace("{subject}", subject[lang]).replace("{age}", age);
+    });
   }
 }
 

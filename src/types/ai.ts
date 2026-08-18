@@ -62,6 +62,7 @@ export interface AIProvider {
   improvePage(page: Page, instruction: string, config: BookConfig): Promise<Page>;
   generateActivity(topic: string, config: BookConfig): Promise<Page>;
   enhanceInstructions(rawInstruction: string, config: Partial<BookConfig>): Promise<string>;
+  suggestTopics(config: Partial<BookConfig>): Promise<string[]>;
 }
 
 export interface ImageProvider {

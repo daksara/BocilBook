@@ -181,4 +181,29 @@ export class LLMAIProvider implements AIProvider {
       return this.mock.enhanceInstructions(rawInstruction, config);
     }
   }
+
+  async suggestTopics(config: Partial<BookConfig>): Promise<string[]> {
+    try {
+      const { topics } = await completeJSON<{ topics: string[] }>(
+        [
+          {
+            role: "system",
+            content:
+              "You brainstorm topic ideas for a children's activity book generator. Given the book type, age range, and " +
+              "difficulty, propose 6 short, specific, and appealing topic ideas (each under 10 words) in the SAME language " +
+              "requested. Avoid repeating generic phrasing between ideas. Reply with strict JSON: {\"topics\": [\"...\", ...]}.",
+          },
+          {
+            role: "user",
+            content: `Book type: ${config.bookType ?? "workbook"}. Age range: ${config.ageRange ?? "3-5"}. Difficulty: ${config.difficulty ?? "medium"}. Language: ${config.language === "en" ? "English" : "Indonesian"}.`,
+          },
+        ],
+        { temperature: 0.9, maxTokens: 300 }
+      );
+      const cleaned = (topics ?? []).map((t) => t.trim()).filter(Boolean);
+      return cleaned.length ? cleaned : await this.mock.suggestTopics(config);
+    } catch {
+      return this.mock.suggestTopics(config);
+    }
+  }
 }

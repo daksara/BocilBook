@@ -69,4 +69,12 @@ export class RemoteAIProvider implements AIProvider {
       return this.mock.enhanceInstructions(rawInstruction, config);
     }
   }
+
+  async suggestTopics(config: Partial<BookConfig>): Promise<string[]> {
+    try {
+      return await this.call<string[]>({ method: "suggestTopics", config });
+    } catch {
+      return this.mock.suggestTopics(config);
+    }
+  }
 }

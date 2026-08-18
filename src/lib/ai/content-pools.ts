@@ -5,26 +5,26 @@ export interface AlphabetEntry {
 }
 
 export const ALPHABET_ID: AlphabetEntry[] = [
-  { letter: "A", word: "Angsa", subject: "angsa" },
-  { letter: "B", word: "Bebek", subject: "bebek" },
+  { letter: "A", word: "Ayam", subject: "ayam" },
+  { letter: "B", word: "Beruang", subject: "beruang" },
   { letter: "C", word: "Cicak", subject: "cicak" },
-  { letter: "D", word: "Domba", subject: "domba" },
-  { letter: "E", word: "Elang", subject: "elang" },
+  { letter: "D", word: "Daun", subject: "daun" },
+  { letter: "E", word: "Eskrim", subject: "eskrim" },
   { letter: "F", word: "Flamingo", subject: "flamingo" },
   { letter: "G", word: "Gajah", subject: "gajah" },
   { letter: "H", word: "Harimau", subject: "harimau" },
   { letter: "I", word: "Ikan", subject: "ikan" },
-  { letter: "J", word: "Jerapah", subject: "jerapah" },
+  { letter: "J", word: "Jeruk", subject: "jeruk" },
   { letter: "K", word: "Kucing", subject: "kucing" },
-  { letter: "L", word: "Lebah", subject: "lebah" },
+  { letter: "L", word: "Layangan", subject: "layangan" },
   { letter: "M", word: "Monyet", subject: "monyet" },
-  { letter: "N", word: "Naga", subject: "naga" },
-  { letter: "O", word: "Onta", subject: "onta" },
+  { letter: "N", word: "Nanas", subject: "nanas" },
+  { letter: "O", word: "Oval", subject: "oval" },
   { letter: "P", word: "Pisang", subject: "pisang" },
   { letter: "Q", word: "Quokka", subject: "quokka" },
-  { letter: "R", word: "Rusa", subject: "rusa" },
-  { letter: "S", word: "Singa", subject: "singa" },
-  { letter: "T", word: "Tupai", subject: "tupai" },
+  { letter: "R", word: "Roti", subject: "roti" },
+  { letter: "S", word: "Sepatu", subject: "sepatu" },
+  { letter: "T", word: "Topi", subject: "topi" },
   { letter: "U", word: "Ulat", subject: "ulat" },
   { letter: "V", word: "Vas Bunga", subject: "vas" },
   { letter: "W", word: "Wortel", subject: "wortel" },
@@ -37,23 +37,23 @@ export const ALPHABET_EN: AlphabetEntry[] = [
   { letter: "A", word: "Apple", subject: "apple" },
   { letter: "B", word: "Bear", subject: "bear" },
   { letter: "C", word: "Cat", subject: "cat" },
-  { letter: "D", word: "Duck", subject: "duck" },
+  { letter: "D", word: "Dog", subject: "dog" },
   { letter: "E", word: "Elephant", subject: "elephant" },
   { letter: "F", word: "Fish", subject: "fish" },
-  { letter: "G", word: "Goose", subject: "goose" },
+  { letter: "G", word: "Gecko", subject: "gecko" },
   { letter: "H", word: "House", subject: "house" },
   { letter: "I", word: "Ice Cream", subject: "icecream" },
   { letter: "J", word: "Jelly", subject: "jelly" },
   { letter: "K", word: "Kite", subject: "kite" },
-  { letter: "L", word: "Lion", subject: "lion" },
+  { letter: "L", word: "Leaf", subject: "leaf" },
   { letter: "M", word: "Monkey", subject: "monkey" },
   { letter: "N", word: "Nest", subject: "nest" },
-  { letter: "O", word: "Owl", subject: "owl" },
-  { letter: "P", word: "Panda", subject: "panda" },
-  { letter: "Q", word: "Queen", subject: "queen" },
+  { letter: "O", word: "Orange", subject: "orange" },
+  { letter: "P", word: "Penguin", subject: "penguin" },
+  { letter: "Q", word: "Quokka", subject: "quokka" },
   { letter: "R", word: "Rabbit", subject: "rabbit" },
   { letter: "S", word: "Sun", subject: "sun" },
-  { letter: "T", word: "Turtle", subject: "turtle" },
+  { letter: "T", word: "Tiger", subject: "tiger" },
   { letter: "U", word: "Umbrella", subject: "umbrella" },
   { letter: "V", word: "Van", subject: "car" },
   { letter: "W", word: "Watermelon", subject: "watermelon" },
@@ -75,18 +75,21 @@ export const COUNTABLE_SUBJECTS = [
 ];
 
 export const OBJECT_POOL = [
-  "goose", "cat", "dog", "elephant", "rabbit", "fish", "bird", "butterfly", "bee", "frog",
-  "lion", "monkey", "cow", "chicken", "duck", "turtle", "bear", "owl", "sheep",
-  "tiger", "giraffe", "zebra", "fox", "horse", "pig", "mouse", "penguin", "snail",
-  "ladybug", "gecko", "deer", "squirrel", "camel", "eagle",
+  "cat", "dog", "elephant", "rabbit", "fish", "bird", "butterfly", "frog",
+  "monkey", "cow", "chicken", "bear",
+  "tiger", "zebra", "fox", "pig", "mouse", "penguin", "snail",
+  "ladybug", "gecko",
   "apple", "banana", "orange", "grape", "strawberry", "watermelon",
   "carrot", "corn", "pineapple", "mango", "cherry", "bread", "egg", "pizza", "cake", "icecream",
   "car", "bus", "bicycle", "train", "airplane", "boat",
-  "star", "sun", "moon", "cloud", "balloon", "book", "ball", "rainbow", "clock", "key", "hat", "shoe",
+  "star", "sun", "moon", "cloud", "balloon", "book", "ball", "clock", "key", "hat", "shoe",
   "flower", "tree", "leaf", "mushroom", "house", "umbrella", "heart", "gift", "kite",
 ];
 
-export const VEHICLE_POOL = ["car", "bus", "bicycle", "train", "airplane", "boat", "kite"];
+export const VEHICLE_POOL = [
+  "car", "bus", "bicycle", "train", "airplane", "boat", "kite",
+  "motorcycle", "helicopter", "ship", "ambulance", "firetruck", "tractor", "scooter",
+];
 
 export const FRUIT_POOL = [
   "apple", "banana", "orange", "grape", "strawberry", "watermelon", "pineapple", "mango", "cherry",
@@ -100,36 +103,67 @@ export const ANIMAL_POOL: { label: string; subject: string; category: string }[]
   { label: "Kucing", subject: "cat", category: "Hewan Darat" },
   { label: "Anjing", subject: "dog", category: "Hewan Darat" },
   { label: "Gajah", subject: "elephant", category: "Hewan Darat" },
-  { label: "Singa", subject: "lion", category: "Hewan Darat" },
   { label: "Kelinci", subject: "rabbit", category: "Hewan Darat" },
   { label: "Sapi", subject: "cow", category: "Hewan Darat" },
   { label: "Beruang", subject: "bear", category: "Hewan Darat" },
-  { label: "Domba", subject: "sheep", category: "Hewan Darat" },
   { label: "Harimau", subject: "tiger", category: "Hewan Darat" },
-  { label: "Jerapah", subject: "giraffe", category: "Hewan Darat" },
   { label: "Zebra", subject: "zebra", category: "Hewan Darat" },
   { label: "Rubah", subject: "fox", category: "Hewan Darat" },
-  { label: "Kuda", subject: "horse", category: "Hewan Darat" },
   { label: "Babi", subject: "pig", category: "Hewan Darat" },
   { label: "Tikus", subject: "mouse", category: "Hewan Darat" },
+  { label: "Cicak", subject: "gecko", category: "Hewan Darat" },
+  { label: "Siput", subject: "snail", category: "Hewan Darat" },
+  { label: "Singa", subject: "lion", category: "Hewan Darat" },
+  { label: "Jerapah", subject: "giraffe", category: "Hewan Darat" },
+  { label: "Domba", subject: "sheep", category: "Hewan Darat" },
+  { label: "Kambing", subject: "goat", category: "Hewan Darat" },
+  { label: "Kuda", subject: "horse", category: "Hewan Darat" },
   { label: "Rusa", subject: "deer", category: "Hewan Darat" },
   { label: "Tupai", subject: "squirrel", category: "Hewan Darat" },
   { label: "Unta", subject: "camel", category: "Hewan Darat" },
-  { label: "Cicak", subject: "gecko", category: "Hewan Darat" },
-  { label: "Siput", subject: "snail", category: "Hewan Darat" },
+  { label: "Koala", subject: "koala", category: "Hewan Darat" },
+  { label: "Panda", subject: "panda", category: "Hewan Darat" },
+  { label: "Kanguru", subject: "kangaroo", category: "Hewan Darat" },
+  { label: "Landak", subject: "hedgehog", category: "Hewan Darat" },
+  { label: "Kuda Nil", subject: "hippo", category: "Hewan Darat" },
+  { label: "Badak", subject: "rhino", category: "Hewan Darat" },
+  { label: "Ular", subject: "snake", category: "Hewan Darat" },
   { label: "Ikan", subject: "fish", category: "Hewan Air" },
+  { label: "Katak", subject: "frog", category: "Hewan Air" },
+  { label: "Penguin", subject: "penguin", category: "Hewan Air" },
   { label: "Bebek", subject: "duck", category: "Hewan Air" },
   { label: "Angsa", subject: "goose", category: "Hewan Air" },
   { label: "Kura-kura", subject: "turtle", category: "Hewan Air" },
-  { label: "Katak", subject: "frog", category: "Hewan Air" },
-  { label: "Penguin", subject: "penguin", category: "Hewan Air" },
+  { label: "Lumba-lumba", subject: "dolphin", category: "Hewan Air" },
+  { label: "Paus", subject: "whale", category: "Hewan Air" },
+  { label: "Hiu", subject: "shark", category: "Hewan Air" },
+  { label: "Gurita", subject: "octopus", category: "Hewan Air" },
+  { label: "Kepiting", subject: "crab", category: "Hewan Air" },
+  { label: "Anjing Laut", subject: "seal", category: "Hewan Air" },
   { label: "Burung", subject: "bird", category: "Hewan Udara" },
   { label: "Kupu-kupu", subject: "butterfly", category: "Hewan Udara" },
-  { label: "Lebah", subject: "bee", category: "Hewan Udara" },
+  { label: "Kepik", subject: "ladybug", category: "Hewan Udara" },
   { label: "Burung Hantu", subject: "owl", category: "Hewan Udara" },
   { label: "Elang", subject: "eagle", category: "Hewan Udara" },
-  { label: "Kepik", subject: "ladybug", category: "Hewan Udara" },
+  { label: "Merak", subject: "peacock", category: "Hewan Udara" },
+  { label: "Kakatua", subject: "parrot", category: "Hewan Udara" },
+  { label: "Lebah", subject: "bee", category: "Serangga" },
+  { label: "Laba-laba", subject: "spider", category: "Serangga" },
+  { label: "Semut", subject: "ant", category: "Serangga" },
+  { label: "Nyamuk", subject: "mosquito", category: "Serangga" },
 ];
+
+export const SPACE_POOL = ["rocket", "planet", "astronaut", "alien", "ufo", "comet", "telescope", "star", "moon"];
+
+export const OCEAN_POOL = ["fish", "dolphin", "whale", "shark", "octopus", "crab", "seal", "turtle", "penguin"];
+
+export const PROFESSION_POOL = ["doctor", "teacher", "police", "firefighter", "chef", "farmer", "pilot", "scientist"];
+
+export const INSECT_POOL = ["bee", "spider", "ant", "mosquito", "butterfly", "ladybug", "snail", "caterpillar"];
+
+export const WEATHER_POOL = ["sun", "rain", "snow", "cloud", "lightning", "rainbow", "snowman", "umbrella"];
+
+export const BODY_POOL = ["eye", "hand", "foot", "ear", "nose", "mouth", "tooth"];
 
 export const SHAPE_POOL: { shape: string; label: string }[] = [
   { shape: "circle", label: "Lingkaran" },
@@ -157,9 +191,49 @@ export const RAMADAN_POOL = [
   { label: "Bulan Sabit", subject: "moon" },
   { label: "Bintang", subject: "star" },
   { label: "Kurma", subject: "gift" },
-  { label: "Lentera", subject: "balloon" },
-  { label: "Masjid", subject: "house" },
+  { label: "Lentera", subject: "lantern" },
+  { label: "Masjid", subject: "mosque" },
+  { label: "Tasbih", subject: "prayerbeads" },
 ];
+
+export const TOPIC_IDEA_SUBJECTS: { id: string; en: string }[] = [
+  { id: "hewan ternak", en: "farm animals" },
+  { id: "kendaraan roda", en: "wheeled vehicles" },
+  { id: "buah tropis", en: "tropical fruits" },
+  { id: "cuaca dan musim", en: "weather and seasons" },
+  { id: "profesi impian", en: "dream professions" },
+  { id: "luar angkasa", en: "outer space" },
+  { id: "dunia bawah laut", en: "the underwater world" },
+  { id: "kebun binatang", en: "the zoo" },
+  { id: "serangga kecil", en: "tiny insects" },
+  { id: "hutan hujan", en: "the rainforest" },
+];
+
+export const TOPIC_IDEA_TEMPLATES: Record<
+  "workbook" | "coloring-book" | "activity-book" | "learning-book" | "story-book",
+  { id: string; en: string }[]
+> = {
+  workbook: [
+    { id: "Mengenal {subject} untuk anak usia {age} tahun", en: "Learning about {subject} for kids aged {age}" },
+    { id: "Latihan menulis dan berhitung bertema {subject}", en: "Writing and counting practice themed around {subject}" },
+  ],
+  "coloring-book": [
+    { id: "Halaman mewarnai bertema {subject}", en: "Coloring pages themed around {subject}" },
+    { id: "Buku mewarnai {subject} untuk anak", en: "A {subject} coloring book for kids" },
+  ],
+  "activity-book": [
+    { id: "Kumpulan aktivitas seru bertema {subject}", en: "A collection of fun activities themed around {subject}" },
+    { id: "Aktivitas mencari, mencocokkan, dan bermain dengan {subject}", en: "Find, match, and play activities featuring {subject}" },
+  ],
+  "learning-book": [
+    { id: "Mengenal {subject} secara sederhana", en: "A simple introduction to {subject}" },
+    { id: "Belajar tentang {subject} untuk usia {age} tahun", en: "Learning about {subject} for ages {age}" },
+  ],
+  "story-book": [
+    { id: "Cerita bergambar bertema {subject}", en: "An illustrated story themed around {subject}" },
+    { id: "Petualangan seru seputar {subject}", en: "A fun adventure around {subject}" },
+  ],
+};
 
 interface TopicPool {
   keywords: string[];
@@ -169,7 +243,13 @@ interface TopicPool {
 const TOPIC_POOLS: TopicPool[] = [
   { keywords: ["huruf", "alphabet", "abc", "letter"], subjects: OBJECT_POOL },
   { keywords: ["angka", "number", "berhitung", "matematika"], subjects: COUNTABLE_SUBJECTS },
-  { keywords: ["hewan", "animal", "binatang"], subjects: ANIMAL_POOL.map((a) => a.subject) },
+  { keywords: ["luar angkasa", "antariksa", "space", "planet", "astronot"], subjects: SPACE_POOL },
+  { keywords: ["bawah laut", "laut", "ocean", "underwater", "sea"], subjects: OCEAN_POOL },
+  { keywords: ["hewan", "animal", "binatang", "kebun binatang", "zoo"], subjects: ANIMAL_POOL.map((a) => a.subject) },
+  { keywords: ["serangga", "insect", "bug"], subjects: INSECT_POOL },
+  { keywords: ["profesi", "pekerjaan", "cita-cita", "profession", "job"], subjects: PROFESSION_POOL },
+  { keywords: ["cuaca", "musim", "weather", "season"], subjects: WEATHER_POOL },
+  { keywords: ["anggota tubuh", "tubuh", "body"], subjects: BODY_POOL },
   { keywords: ["warna", "color", "colour"], subjects: COLOR_POOL.map((c) => c.subject) },
   { keywords: ["bentuk", "shape"], subjects: SHAPE_POOL.map((s) => s.shape) },
   { keywords: ["ramadan", "puasa", "islam", "lebaran", "hijaiyah"], subjects: RAMADAN_POOL.map((r) => r.subject) },
