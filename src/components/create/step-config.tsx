@@ -12,7 +12,7 @@ import {
 import { cn } from "@/lib/utils";
 import { useStylePalette } from "@/components/templates/worksheet-frame";
 import type { AgeRange, BookConfig, BookStyle, Difficulty, Language } from "@/types";
-import { AGE_OPTIONS, DIFFICULTY_OPTIONS, LANGUAGE_OPTIONS, PAGE_OPTIONS, STYLE_OPTIONS } from "./wizard-options";
+import { AGE_OPTIONS, DIFFICULTY_OPTIONS, LANGUAGE_OPTIONS, PAGE_OPTIONS, STYLE_OPTIONS, TOPIC_PRESETS } from "./wizard-options";
 import { StepHeading } from "./step-heading";
 
 export function StepConfig({
@@ -27,13 +27,35 @@ export function StepConfig({
       <StepHeading title="Konfigurasi Buku" subtitle="Sesuaikan topik, usia, dan gaya visual bukumu." />
 
       <div className="flex flex-col gap-8">
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-3">
           <Label htmlFor="topic">Apa yang ingin dipelajari?</Label>
+          <div className="flex flex-col gap-1.5">
+            <span className="text-xs font-medium text-muted-foreground">
+              Topik populer — tinggal pilih, sudah diambil dari referensi marketplace terlaris
+            </span>
+            <div className="flex flex-wrap gap-2">
+              {TOPIC_PRESETS[config.bookType].map((preset) => (
+                <button
+                  key={preset.id}
+                  type="button"
+                  onClick={() => onChange({ topic: preset.topic })}
+                  className={cn(
+                    "rounded-full border-2 px-3 py-1.5 text-xs font-semibold transition-colors",
+                    config.topic === preset.topic
+                      ? "border-primary bg-primary/5 text-primary"
+                      : "border-border/70 text-muted-foreground hover:border-primary/40 hover:text-foreground"
+                  )}
+                >
+                  {preset.label}
+                </button>
+              ))}
+            </div>
+          </div>
           <Textarea
             id="topic"
             value={config.topic}
             onChange={(e) => onChange({ topic: e.target.value })}
-            placeholder="Contoh: Mengenal huruf A-Z untuk anak usia 3-5 tahun"
+            placeholder="Atau tulis topik sendiri, contoh: Mengenal huruf A-Z untuk anak usia 3-5 tahun"
             className="min-h-28"
           />
         </div>
