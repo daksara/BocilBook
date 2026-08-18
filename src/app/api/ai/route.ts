@@ -12,7 +12,8 @@ type Body =
   | { method: "generateIllustrationPrompt"; subject: string; style: string }
   | { method: "improvePage"; page: Page; instruction: string; config: BookConfig }
   | { method: "generateActivity"; topic: string; config: BookConfig }
-  | { method: "enhanceInstructions"; rawInstruction: string; config: Partial<BookConfig> };
+  | { method: "enhanceInstructions"; rawInstruction: string; config: Partial<BookConfig> }
+  | { method: "suggestTopics"; config: Partial<BookConfig> };
 
 /**
  * Single dispatch endpoint for the AIProvider interface, so API keys
@@ -41,6 +42,8 @@ export async function POST(req: Request) {
         return NextResponse.json(await provider.generateActivity(body.topic, body.config));
       case "enhanceInstructions":
         return NextResponse.json(await provider.enhanceInstructions(body.rawInstruction, body.config));
+      case "suggestTopics":
+        return NextResponse.json(await provider.suggestTopics(body.config));
       default:
         return NextResponse.json({ error: "unknown method" }, { status: 400 });
     }

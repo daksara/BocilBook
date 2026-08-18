@@ -161,6 +161,45 @@ export const RAMADAN_POOL = [
   { label: "Masjid", subject: "house" },
 ];
 
+export const TOPIC_IDEA_SUBJECTS: { id: string; en: string }[] = [
+  { id: "hewan ternak", en: "farm animals" },
+  { id: "kendaraan roda", en: "wheeled vehicles" },
+  { id: "buah tropis", en: "tropical fruits" },
+  { id: "cuaca dan musim", en: "weather and seasons" },
+  { id: "profesi impian", en: "dream professions" },
+  { id: "luar angkasa", en: "outer space" },
+  { id: "dunia bawah laut", en: "the underwater world" },
+  { id: "kebun binatang", en: "the zoo" },
+  { id: "serangga kecil", en: "tiny insects" },
+  { id: "hutan hujan", en: "the rainforest" },
+];
+
+export const TOPIC_IDEA_TEMPLATES: Record<
+  "workbook" | "coloring-book" | "activity-book" | "learning-book" | "story-book",
+  { id: string; en: string }[]
+> = {
+  workbook: [
+    { id: "Mengenal {subject} untuk anak usia {age} tahun", en: "Learning about {subject} for kids aged {age}" },
+    { id: "Latihan menulis dan berhitung bertema {subject}", en: "Writing and counting practice themed around {subject}" },
+  ],
+  "coloring-book": [
+    { id: "Halaman mewarnai bertema {subject}", en: "Coloring pages themed around {subject}" },
+    { id: "Buku mewarnai {subject} untuk anak", en: "A {subject} coloring book for kids" },
+  ],
+  "activity-book": [
+    { id: "Kumpulan aktivitas seru bertema {subject}", en: "A collection of fun activities themed around {subject}" },
+    { id: "Aktivitas mencari, mencocokkan, dan bermain dengan {subject}", en: "Find, match, and play activities featuring {subject}" },
+  ],
+  "learning-book": [
+    { id: "Mengenal {subject} secara sederhana", en: "A simple introduction to {subject}" },
+    { id: "Belajar tentang {subject} untuk usia {age} tahun", en: "Learning about {subject} for ages {age}" },
+  ],
+  "story-book": [
+    { id: "Cerita bergambar bertema {subject}", en: "An illustrated story themed around {subject}" },
+    { id: "Petualangan seru seputar {subject}", en: "A fun adventure around {subject}" },
+  ],
+};
+
 interface TopicPool {
   keywords: string[];
   subjects: string[];

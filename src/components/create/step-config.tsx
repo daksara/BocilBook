@@ -1,7 +1,10 @@
 "use client";
 
+import { useState } from "react";
+import { Loader2, Sparkles } from "lucide-react";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
+import { Button } from "@/components/ui/button";
 import {
   Select,
   SelectContent,
@@ -11,6 +14,7 @@ import {
 } from "@/components/ui/select";
 import { cn } from "@/lib/utils";
 import { useStylePalette } from "@/components/templates/worksheet-frame";
+import { getAIProvider } from "@/lib/ai";
 import type { AgeRange, BookConfig, BookStyle, Difficulty, Language } from "@/types";
 import { AGE_OPTIONS, DIFFICULTY_OPTIONS, LANGUAGE_OPTIONS, PAGE_OPTIONS, STYLE_OPTIONS, TOPIC_PRESETS } from "./wizard-options";
 import { StepHeading } from "./step-heading";
@@ -22,6 +26,20 @@ export function StepConfig({
   config: BookConfig;
   onChange: (patch: Partial<BookConfig>) => void;
 }) {
+  const [aiTopics, setAiTopics] = useState<string[]>([]);
+  const [loadingAiTopics, setLoadingAiTopics] = useState(false);
+
+  async function handleSuggestTopics() {
+    if (loadingAiTopics) return;
+    setLoadingAiTopics(true);
+    try {
+      const topics = await getAIProvider().suggestTopics(config);
+      setAiTopics(topics);
+    } finally {
+      setLoadingAiTopics(false);
+    }
+  }
+
   return (
     <div className="mx-auto max-w-4xl px-4 py-10 sm:px-6">
       <StepHeading title="Konfigurasi Buku" subtitle="Sesuaikan topik, usia, dan gaya visual bukumu." />
@@ -51,6 +69,38 @@ export function StepConfig({
               ))}
             </div>
           </div>
+
+          <div className="flex flex-col gap-1.5">
+            <div className="flex items-center justify-between gap-2">
+              <span className="text-xs font-medium text-muted-foreground">
+                Butuh ide lain? Biarkan AI mengusulkan topik sesuai usia dan jenis bukumu
+              </span>
+              <Button type="button" variant="soft" size="sm" onClick={handleSuggestTopics} disabled={loadingAiTopics}>
+                {loadingAiTopics ? <Loader2 className="animate-spin" /> : <Sparkles />}
+                Ide topik dengan AI
+              </Button>
+            </div>
+            {aiTopics.length > 0 && (
+              <div className="flex flex-wrap gap-2">
+                {aiTopics.map((topic) => (
+                  <button
+                    key={topic}
+                    type="button"
+                    onClick={() => onChange({ topic })}
+                    className={cn(
+                      "rounded-full border-2 px-3 py-1.5 text-xs font-semibold transition-colors",
+                      config.topic === topic
+                        ? "border-primary bg-primary/5 text-primary"
+                        : "border-border/70 text-muted-foreground hover:border-primary/40 hover:text-foreground"
+                    )}
+                  >
+                    {topic}
+                  </button>
+                ))}
+              </div>
+            )}
+          </div>
+
           <Textarea
             id="topic"
             value={config.topic}
