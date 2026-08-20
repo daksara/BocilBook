@@ -18,6 +18,7 @@ import { AppShell } from "@/components/dashboard/app-shell";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { PageRenderer } from "@/components/templates";
+import { ContentLibrary } from "@/components/templates/content-library";
 import { TEMPLATE_CATALOG } from "@/lib/data/templates-catalog";
 import { buildPageData, pageTitleFor } from "@/lib/ai/content-builder";
 import type { BookConfig } from "@/types";
@@ -112,6 +113,8 @@ export default function TemplatesPage() {
             </div>
           </div>
         ))}
+
+        <ContentLibrary />
       </div>
     </AppShell>
   );
