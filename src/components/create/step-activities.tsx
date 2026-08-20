@@ -42,7 +42,7 @@ export function StepActivities({
             <Sparkles className="size-5" />
           </span>
           <div>
-            <p className="font-display font-bold">✨ Biarkan AI memilih</p>
+            <p className="font-display font-bold">Biarkan AI memilih</p>
             <p className="text-sm text-muted-foreground">
               AI akan membuat kombinasi aktivitas yang seimbang berdasarkan usia dan topik.
             </p>

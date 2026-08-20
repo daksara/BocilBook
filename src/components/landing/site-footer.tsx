@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Heart } from "lucide-react";
 import { Logo } from "@/components/shared/logo";
 
 export function SiteFooter() {
@@ -36,7 +37,9 @@ export function SiteFooter() {
 
         <div className="mt-10 flex flex-col items-center justify-between gap-3 border-t border-border/60 pt-6 text-xs text-muted-foreground sm:flex-row">
           <span>© {new Date().getFullYear()} BocilBook. Semua hak dilindungi.</span>
-          <span>Dibuat dengan ❤ untuk orang tua & guru di Indonesia.</span>
+          <span className="inline-flex items-center gap-1">
+            Dibuat dengan <Heart className="size-3.5 fill-current text-primary" /> untuk orang tua & guru di Indonesia.
+          </span>
         </div>
       </div>
     </footer>

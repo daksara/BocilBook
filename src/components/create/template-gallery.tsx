@@ -17,7 +17,7 @@ export function TemplateGallery({
   return (
     <div className="mx-auto max-w-5xl px-4 py-10 sm:px-6">
       <StepHeading
-        title="🚀 Mulai dengan Template Siap Jual"
+        title="Mulai dengan Template Siap Jual"
         subtitle="Topik, aktivitas, dan gaya visual sudah diracik lengkap — tinggal pilih dan generate. Atau atur semuanya sendiri dari awal."
       />
 
