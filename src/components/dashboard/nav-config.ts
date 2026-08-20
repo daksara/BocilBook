@@ -22,5 +22,4 @@ export const MOBILE_NAV_ITEMS: NavItem[] = [
   { href: "/create", label: "Buat", icon: SquarePlus },
   { href: "/games", label: "Main", icon: Gamepad2 },
   { href: "/templates", label: "Template", icon: LayoutTemplate },
-  { href: "/settings", label: "Setelan", icon: Settings },
 ];
