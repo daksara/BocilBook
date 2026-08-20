@@ -10,8 +10,25 @@ export function isPlayablePage(type: PageType): boolean {
   return PLAYABLE_TYPES.includes(type);
 }
 
-export function PlayablePage({ page, style, totalPages }: { page: Page; style: BookStyle; totalPages: number }) {
-  const props = { style, pageNumber: page.pageNumber, totalPages };
+export function PlayablePage({
+  page,
+  style,
+  totalPages,
+  onNext,
+  levelLabel,
+  onExit,
+}: {
+  page: Page;
+  style: BookStyle;
+  totalPages: number;
+  /** Advances to the next level when the current one is completed. Omit to just replay. */
+  onNext?: () => void;
+  /** e.g. "Level 2 dari 5" — shown on the completion overlay when part of a level sequence. */
+  levelLabel?: string;
+  /** Called when the player wants to leave after finishing the last level. */
+  onExit?: () => void;
+}) {
+  const props = { style, pageNumber: page.pageNumber, totalPages, onNext, levelLabel, onExit };
 
   switch (page.data.type) {
     case "find_and_circle":
