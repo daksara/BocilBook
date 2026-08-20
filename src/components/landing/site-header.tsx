@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import { Menu, X } from "lucide-react";
+import { Menu, Sparkles, X } from "lucide-react";
 import { Logo } from "@/components/shared/logo";
 import { Button } from "@/components/ui/button";
 import { cn } from "@/lib/utils";
@@ -41,7 +41,9 @@ export function SiteHeader() {
             <Link href="/dashboard">Masuk</Link>
           </Button>
           <Button asChild>
-            <Link href="/create">✨ Buat Buku Sekarang</Link>
+            <Link href="/create">
+              <Sparkles /> Buat Buku Sekarang
+            </Link>
           </Button>
         </div>
 
@@ -77,7 +79,9 @@ export function SiteHeader() {
                 <Link href="/dashboard">Masuk</Link>
               </Button>
               <Button asChild>
-                <Link href="/create">✨ Buat Buku Sekarang</Link>
+                <Link href="/create">
+                  <Sparkles /> Buat Buku Sekarang
+                </Link>
               </Button>
             </div>
           </div>

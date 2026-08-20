@@ -1,5 +1,4 @@
 import type { BookStyle, CutAndPastePageData } from "@/types";
-import { cn } from "@/lib/utils";
 import { InstructionBanner, useStylePalette, WorksheetFrame } from "./worksheet-frame";
 import { Scissors } from "lucide-react";
 
@@ -33,15 +32,13 @@ export function CutAndPasteTemplate({
           ))}
         </div>
 
-        <div className="flex flex-1 items-center justify-center">
-          <div
-            className={cn("flex aspect-square w-40 items-center justify-center rounded-2xl border-4 border-dashed sm:w-48")}
-            style={{ borderColor: p.accent, background: "white" }}
-          >
-            <span className="font-display text-sm font-bold capitalize" style={{ color: p.accent }}>
-              tempel {data.targetLabel}
-            </span>
-          </div>
+        <div
+          className="flex flex-1 items-center justify-center rounded-2xl border-4 border-dashed"
+          style={{ borderColor: p.accent, background: "white" }}
+        >
+          <span className="font-display text-base font-bold capitalize sm:text-lg" style={{ color: p.accent }}>
+            tempel {data.targetLabel}
+          </span>
         </div>
       </div>
     </WorksheetFrame>

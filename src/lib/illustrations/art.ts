@@ -488,9 +488,13 @@ export const ART: Record<string, Builder> = {
 
 export const ART_KEYS = Object.keys(ART);
 
+// Longest key first, so e.g. "pineapple" matches before the shorter "apple"
+// substring inside it (same for "caterpillar"/"cat" and "carrot"/"car").
+const ART_KEYS_BY_LENGTH = [...ART_KEYS].sort((a, b) => b.length - a.length);
+
 export function findArtKey(text: string): string | null {
   const slug = text.toLowerCase();
-  for (const key of ART_KEYS) {
+  for (const key of ART_KEYS_BY_LENGTH) {
     if (slug.includes(key)) return key;
   }
   return null;

@@ -24,7 +24,7 @@ export default function DashboardPage() {
       <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         <div className="mb-8 flex flex-col items-start justify-between gap-6 rounded-3xl bg-gradient-to-br from-primary/10 via-accent/40 to-transparent p-6 sm:flex-row sm:items-center sm:p-8">
           <div>
-            <h1 className="font-display text-2xl font-extrabold sm:text-3xl">Halo {firstName} 👋</h1>
+            <h1 className="font-display text-2xl font-extrabold sm:text-3xl">Halo, {firstName}</h1>
             <p className="mt-1 text-muted-foreground">Siap bikin buku baru?</p>
           </div>
           <Button size="lg" asChild>

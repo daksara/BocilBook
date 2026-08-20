@@ -18,7 +18,7 @@ export function FindAndCircleTemplate({
     <WorksheetFrame style={style} pageNumber={pageNumber} totalPages={totalPages} eyebrow="Find & Circle">
       <InstructionBanner palette={p}>{data.instruction}</InstructionBanner>
 
-      <div className="grid flex-1 grid-cols-4 content-center gap-3 sm:gap-4">
+      <div className="grid flex-1 grid-cols-3 content-evenly gap-4 sm:gap-5">
         {data.items.map((item) => (
           <div
             key={item.id}

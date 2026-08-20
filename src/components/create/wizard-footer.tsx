@@ -23,7 +23,7 @@ export function WizardFooter({
   return (
     <div className="fixed inset-x-0 bottom-0 z-30 border-t border-border/70 bg-background/95 backdrop-blur-md">
       <div className="mx-auto flex max-w-4xl items-center justify-between gap-3 px-4 py-4 sm:px-6">
-        <Button variant="outline" size="lg" onClick={onBack} disabled={step === 1}>
+        <Button variant="outline" size="lg" onClick={onBack}>
           <ArrowLeft /> Kembali
         </Button>
         <Button size="lg" onClick={onNext} disabled={nextDisabled}>

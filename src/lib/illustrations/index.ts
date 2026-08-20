@@ -87,12 +87,16 @@ const SYNONYMS: Record<string, string> = {
   kue: "cake",
 };
 
+// Longest alias first, so e.g. "persegipanjang" (rectangle) matches before
+// the shorter "persegi" (square) substring inside it.
+const SYNONYM_ENTRIES = Object.entries(SYNONYMS).sort((a, b) => b[0].length - a[0].length);
+
 function resolveArtKey(subject: string): string | null {
   const slug = subject.toLowerCase().trim();
   if (ART[slug]) return slug;
   const direct = findArtKey(slug);
   if (direct) return direct;
-  for (const [alias, key] of Object.entries(SYNONYMS)) {
+  for (const [alias, key] of SYNONYM_ENTRIES) {
     if (slug.includes(alias) && ART[key]) return key;
   }
   return null;

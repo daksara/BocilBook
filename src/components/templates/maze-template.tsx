@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { Flag, Target } from "lucide-react";
 import type { BookStyle, MazePageData } from "@/types";
 import { generateMaze, mazeSizeForDifficulty } from "@/lib/templates/maze-gen";
 import { InstructionBanner, useStylePalette, WorksheetFrame } from "./worksheet-frame";
@@ -35,11 +36,11 @@ export function MazeTemplate({
 
       <div className="flex flex-1 flex-col items-center justify-center gap-3">
         <div className="flex w-full items-center justify-between px-2 font-display text-xs font-bold capitalize sm:text-sm" style={{ color: p.ink }}>
-          <span className="rounded-full px-3 py-1" style={{ background: p.accentSoft }}>
-            🏁 {data.startLabel}
+          <span className="inline-flex items-center gap-1.5 rounded-full px-3 py-1" style={{ background: p.accentSoft }}>
+            <Flag className="size-3.5" /> {data.startLabel}
           </span>
-          <span className="rounded-full px-3 py-1" style={{ background: p.accentSoft }}>
-            {data.endLabel} 🎯
+          <span className="inline-flex items-center gap-1.5 rounded-full px-3 py-1" style={{ background: p.accentSoft }}>
+            {data.endLabel} <Target className="size-3.5" />
           </span>
         </div>
         <svg viewBox={`-4 -4 ${w + 8} ${h + 8}`} className="w-full max-w-full" style={{ aspectRatio: `${w} / ${h}` }}>

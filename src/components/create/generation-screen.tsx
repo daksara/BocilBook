@@ -64,7 +64,7 @@ export function GenerationScreen({ config, onComplete }: { config: BookConfig; o
         <span className="mb-4 flex size-16 items-center justify-center rounded-full bg-primary/10 text-primary">
           <Sparkles className="size-7 animate-pulse" />
         </span>
-        <h1 className="font-display text-2xl font-extrabold sm:text-3xl">Sedang membuat buku kamu ✨</h1>
+        <h1 className="font-display text-2xl font-extrabold sm:text-3xl">Sedang membuat buku kamu</h1>
         <p className="mt-2 text-muted-foreground">AI sedang menyusun aktivitas dan ilustrasi.</p>
       </div>
 

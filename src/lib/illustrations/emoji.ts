@@ -252,13 +252,17 @@ const EMOJI_SYNONYMS: Record<string, string> = {
   gigi: "tooth",
 };
 
+// Longest key first, so e.g. "rainbow" matches before the shorter "rain"
+// substring inside it (same for "snowman"/"snow", "eggplant"/"ant", "lantern"/"ant").
+const EMOJI_KEYS_BY_LENGTH = Object.keys(EMOJI_MAP).sort((a, b) => b.length - a.length);
+
 export function resolveEmoji(subject: string): string | null {
   const slug = subject.toLowerCase().trim();
   if (EMOJI_MAP[slug]) return EMOJI_MAP[slug];
   for (const [alias, key] of Object.entries(EMOJI_SYNONYMS)) {
     if (slug.includes(alias) && EMOJI_MAP[key]) return EMOJI_MAP[key];
   }
-  for (const key of Object.keys(EMOJI_MAP)) {
+  for (const key of EMOJI_KEYS_BY_LENGTH) {
     if (slug.includes(key)) return EMOJI_MAP[key];
   }
   return null;
