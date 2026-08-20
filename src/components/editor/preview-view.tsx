@@ -6,6 +6,7 @@ import {
   ChevronLeft,
   ChevronRight,
   Download,
+  Gamepad2,
   Maximize,
   Minimize,
   Pencil,
@@ -15,6 +16,7 @@ import {
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { PageRenderer } from "@/components/templates";
+import { isPlayablePage, PlayablePage } from "@/components/games/playable-page";
 import { pageThumbIllustrationUrl } from "@/lib/templates/page-thumb";
 import { useStylePalette } from "@/components/templates/worksheet-frame";
 import { cn } from "@/lib/utils";
@@ -24,11 +26,13 @@ export function PreviewView({ book, onExport }: { book: Book; onExport: () => vo
   const [index, setIndex] = useState(0);
   const [zoom, setZoom] = useState(1);
   const [fullscreen, setFullscreen] = useState(false);
+  const [playMode, setPlayMode] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const palette = useStylePalette(book.config.style);
 
   const page = book.pages[index];
   const total = book.pages.length;
+  const playable = isPlayablePage(page.data.type);
 
   function goTo(i: number) {
     setIndex(Math.max(0, Math.min(total - 1, i)));
@@ -65,6 +69,14 @@ export function PreviewView({ book, onExport }: { book: Book; onExport: () => vo
           <span className="hidden font-display text-sm font-bold sm:inline">{book.title}</span>
         </div>
         <div className="flex items-center gap-1.5">
+          <Button
+            variant={playMode ? "default" : "ghost"}
+            size="sm"
+            className={cn(!playMode && "text-white hover:bg-white/10 hover:text-white")}
+            onClick={() => setPlayMode((v) => !v)}
+          >
+            <Gamepad2 /> <span className="hidden sm:inline">Main</span>
+          </Button>
           <Button variant="ghost" size="icon-sm" className="text-white hover:bg-white/10 hover:text-white" onClick={() => setZoom((z) => Math.max(0.6, z - 0.15))} aria-label="Zoom out">
             <ZoomOut className="size-4" />
           </Button>
@@ -96,11 +108,22 @@ export function PreviewView({ book, onExport }: { book: Book; onExport: () => vo
           <ChevronLeft className="size-5" />
         </button>
 
-        <div
-          className="max-h-full w-full max-w-md overflow-hidden rounded-xl shadow-2xl transition-transform duration-200 sm:max-w-lg"
-          style={{ transform: `scale(${zoom})` }}
-        >
-          <PageRenderer page={page} style={book.config.style} totalPages={total} />
+        <div className="flex max-h-full w-full max-w-md flex-col items-center gap-2 sm:max-w-lg">
+          <div
+            className="w-full overflow-hidden rounded-xl shadow-2xl transition-transform duration-200"
+            style={{ transform: `scale(${zoom})` }}
+          >
+            {playMode && playable ? (
+              <PlayablePage key={page.id} page={page} style={book.config.style} totalPages={total} />
+            ) : (
+              <PageRenderer page={page} style={book.config.style} totalPages={total} />
+            )}
+          </div>
+          {playMode && !playable && (
+            <p className="rounded-full bg-white/10 px-3 py-1 text-center text-xs font-medium text-white/70">
+              Halaman ini belum bisa dimainkan — coba halaman Matching, Cari &amp; Lingkari, atau Hitung &amp; Lingkari.
+            </p>
+          )}
         </div>
 
         <button
@@ -125,7 +148,7 @@ export function PreviewView({ book, onExport }: { book: Book; onExport: () => vo
                 key={p.id}
                 onClick={() => goTo(i)}
                 className={cn(
-                  "flex aspect-[3/4] w-10 shrink-0 items-center justify-center rounded-md border-2 transition-colors",
+                  "relative flex aspect-[3/4] w-10 shrink-0 items-center justify-center rounded-md border-2 transition-colors",
                   i === index ? "border-primary" : "border-transparent opacity-60 hover:opacity-100"
                 )}
                 style={{ background: palette.accentSoft }}
@@ -133,6 +156,11 @@ export function PreviewView({ book, onExport }: { book: Book; onExport: () => vo
                 {url && (
                   // eslint-disable-next-line @next/next/no-img-element
                   <img src={url} alt="" className="h-[60%] w-[60%] object-contain" />
+                )}
+                {isPlayablePage(p.data.type) && (
+                  <span className="absolute top-0.5 right-0.5 flex size-3.5 items-center justify-center rounded-full bg-primary text-white">
+                    <Gamepad2 className="size-2.5" />
+                  </span>
                 )}
               </button>
             );
