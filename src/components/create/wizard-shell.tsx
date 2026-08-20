@@ -11,7 +11,7 @@ export function WizardShell({
   step,
   children,
 }: {
-  step: number;
+  step: number | null;
   children: React.ReactNode;
 }) {
   return (
@@ -27,33 +27,35 @@ export function WizardShell({
             <X className="size-5" />
           </Link>
         </div>
-        <div className="mx-auto max-w-4xl px-4 pb-4 sm:px-6">
-          <div className="flex items-center gap-1.5 sm:gap-2">
-            {STEPS.map((label, i) => {
-              const idx = i + 1;
-              const active = idx === step;
-              const done = idx < step;
-              return (
-                <div key={label} className="flex flex-1 flex-col gap-1.5">
-                  <div
-                    className={cn(
-                      "h-1.5 rounded-full transition-colors",
-                      done || active ? "bg-primary" : "bg-muted"
-                    )}
-                  />
-                  <span
-                    className={cn(
-                      "hidden text-[0.65rem] font-semibold sm:block",
-                      active ? "text-primary" : "text-muted-foreground"
-                    )}
-                  >
-                    {label}
-                  </span>
-                </div>
-              );
-            })}
+        {step !== null && (
+          <div className="mx-auto max-w-4xl px-4 pb-4 sm:px-6">
+            <div className="flex items-center gap-1.5 sm:gap-2">
+              {STEPS.map((label, i) => {
+                const idx = i + 1;
+                const active = idx === step;
+                const done = idx < step;
+                return (
+                  <div key={label} className="flex flex-1 flex-col gap-1.5">
+                    <div
+                      className={cn(
+                        "h-1.5 rounded-full transition-colors",
+                        done || active ? "bg-primary" : "bg-muted"
+                      )}
+                    />
+                    <span
+                      className={cn(
+                        "hidden text-[0.65rem] font-semibold sm:block",
+                        active ? "text-primary" : "text-muted-foreground"
+                      )}
+                    >
+                      {label}
+                    </span>
+                  </div>
+                );
+              })}
+            </div>
           </div>
-        </div>
+        )}
       </header>
       <main className="flex-1 pb-28">{children}</main>
     </div>

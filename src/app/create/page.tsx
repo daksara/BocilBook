@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { WizardShell } from "@/components/create/wizard-shell";
 import { WizardFooter } from "@/components/create/wizard-footer";
+import { TemplateGallery } from "@/components/create/template-gallery";
 import { StepBookType } from "@/components/create/step-book-type";
 import { StepConfig } from "@/components/create/step-config";
 import { StepActivities } from "@/components/create/step-activities";
@@ -11,6 +12,7 @@ import { StepAdvanced } from "@/components/create/step-advanced";
 import { StepSummary } from "@/components/create/step-summary";
 import { GenerationScreen } from "@/components/create/generation-screen";
 import { useBookStore } from "@/lib/store/book-store";
+import type { BookTemplate } from "@/lib/data/book-templates";
 import type { ActivityType, BookConfig } from "@/types";
 
 const DEFAULT_CONFIG: BookConfig = {
@@ -31,7 +33,7 @@ const TOTAL_STEPS = 5;
 export default function CreateBookPage() {
   const router = useRouter();
   const addBook = useBookStore((s) => s.addBook);
-  const [phase, setPhase] = useState<"wizard" | "generating">("wizard");
+  const [phase, setPhase] = useState<"choose" | "wizard" | "generating">("choose");
   const [step, setStep] = useState(1);
   const [config, setConfig] = useState<BookConfig>(DEFAULT_CONFIG);
 
@@ -46,6 +48,19 @@ export default function CreateBookPage() {
         ? prev.activities.filter((a) => a !== id)
         : [...prev.activities, id],
     }));
+  }
+
+  function handleSelectTemplate(template: BookTemplate) {
+    setConfig(template.config);
+    setStep(TOTAL_STEPS);
+    setPhase("wizard");
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
+  function handleStartCustom() {
+    setConfig(DEFAULT_CONFIG);
+    setStep(1);
+    setPhase("wizard");
   }
 
   const canProceed =
@@ -64,7 +79,17 @@ export default function CreateBookPage() {
     if (step > 1) {
       setStep((s) => s - 1);
       window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      setPhase("choose");
     }
+  }
+
+  if (phase === "choose") {
+    return (
+      <WizardShell step={null}>
+        <TemplateGallery onSelectTemplate={handleSelectTemplate} onStartCustom={handleStartCustom} />
+      </WizardShell>
+    );
   }
 
   if (phase === "generating") {
