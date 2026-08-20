@@ -22,11 +22,21 @@ import { useStylePalette } from "@/components/templates/worksheet-frame";
 import { cn } from "@/lib/utils";
 import type { Book } from "@/types";
 
-export function PreviewView({ book, onExport }: { book: Book; onExport: () => void }) {
-  const [index, setIndex] = useState(0);
+export function PreviewView({
+  book,
+  onExport,
+  initialIndex = 0,
+  initialPlayMode = false,
+}: {
+  book: Book;
+  onExport: () => void;
+  initialIndex?: number;
+  initialPlayMode?: boolean;
+}) {
+  const [index, setIndex] = useState(() => Math.max(0, Math.min(book.pages.length - 1, initialIndex)));
   const [zoom, setZoom] = useState(1);
   const [fullscreen, setFullscreen] = useState(false);
-  const [playMode, setPlayMode] = useState(false);
+  const [playMode, setPlayMode] = useState(initialPlayMode);
   const containerRef = useRef<HTMLDivElement>(null);
   const palette = useStylePalette(book.config.style);
 

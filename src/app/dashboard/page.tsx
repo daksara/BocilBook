@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Plus, Sparkles } from "lucide-react";
+import { Gamepad2, Plus, Sparkles } from "lucide-react";
 import { AppShell } from "@/components/dashboard/app-shell";
 import { BookCard } from "@/components/dashboard/book-card";
 import { Button } from "@/components/ui/button";
@@ -27,12 +27,20 @@ export default function DashboardPage() {
             <h1 className="font-display text-2xl font-extrabold sm:text-3xl">Halo, {firstName}</h1>
             <p className="mt-1 text-muted-foreground">Siap bikin buku baru?</p>
           </div>
-          <Button size="lg" asChild>
-            <Link href="/create">
-              <Plus />
-              Buat Buku Baru
-            </Link>
-          </Button>
+          <div className="flex w-full flex-col gap-2.5 sm:w-auto sm:flex-row">
+            <Button size="lg" variant="outline" asChild>
+              <Link href="/games">
+                <Gamepad2 />
+                Main Game
+              </Link>
+            </Button>
+            <Button size="lg" asChild>
+              <Link href="/create">
+                <Plus />
+                Buat Buku Baru
+              </Link>
+            </Button>
+          </div>
         </div>
 
         <div className="mb-8 grid gap-4 sm:grid-cols-3">

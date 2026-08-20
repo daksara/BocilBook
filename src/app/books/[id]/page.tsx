@@ -1,7 +1,7 @@
 "use client";
 
 import { use, useState } from "react";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { useBookStore } from "@/lib/store/book-store";
 import { PreviewView } from "@/components/editor/preview-view";
 import { ExportModal } from "@/components/editor/export-modal";
@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button";
 export default function BookPreviewPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = use(params);
   const router = useRouter();
+  const searchParams = useSearchParams();
   const book = useBookStore((s) => s.books[id]);
   const [exportOpen, setExportOpen] = useState(false);
 
@@ -22,9 +23,18 @@ export default function BookPreviewPage({ params }: { params: Promise<{ id: stri
     );
   }
 
+  const pageNumber = Number(searchParams.get("page"));
+  const initialIndex = pageNumber > 0 ? pageNumber - 1 : 0;
+  const initialPlayMode = searchParams.get("play") === "1";
+
   return (
     <>
-      <PreviewView book={book} onExport={() => setExportOpen(true)} />
+      <PreviewView
+        book={book}
+        onExport={() => setExportOpen(true)}
+        initialIndex={initialIndex}
+        initialPlayMode={initialPlayMode}
+      />
       <ExportModal open={exportOpen} onOpenChange={setExportOpen} book={book} />
     </>
   );
