@@ -36,13 +36,16 @@ export function SiteHeader() {
           ))}
         </nav>
 
-        <div className="hidden items-center gap-3 md:flex">
-          <Button variant="ghost" asChild>
-            <Link href="/dashboard">Masuk</Link>
-          </Button>
-          <Button asChild>
+        <div className="hidden items-center gap-5 md:flex">
+          <Link
+            href="/dashboard"
+            className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+          >
+            Masuk
+          </Link>
+          <Button size="sm" asChild>
             <Link href="/create">
-              <Sparkles /> Buat Buku Sekarang
+              <Sparkles /> Buat Buku
             </Link>
           </Button>
         </div>
