@@ -12,11 +12,17 @@ export function FindAndCircleGame({
   style,
   pageNumber,
   totalPages,
+  onNext,
+  levelLabel,
+  onExit,
 }: {
   data: FindAndCirclePageData;
   style: BookStyle;
   pageNumber: number;
   totalPages: number;
+  onNext?: () => void;
+  levelLabel?: string;
+  onExit?: () => void;
 }) {
   const p = useStylePalette(style);
   const [foundIds, setFoundIds] = useState<Set<string>>(new Set());
@@ -76,7 +82,7 @@ export function FindAndCircleGame({
         })}
       </div>
 
-      <GameCompleteOverlay show={done} palette={p} onReplay={reset} />
+      <GameCompleteOverlay show={done} palette={p} onReplay={reset} onNext={onNext} levelLabel={levelLabel} onExit={onExit} />
     </WorksheetFrame>
   );
 }

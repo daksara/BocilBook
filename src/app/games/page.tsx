@@ -6,7 +6,7 @@ import { CircleDot, GitCompareArrows, Play, SearchCheck, SquarePlus, type Lucide
 import { AppShell } from "@/components/dashboard/app-shell";
 import { Button } from "@/components/ui/button";
 import { useBookStore } from "@/lib/store/book-store";
-import { isPlayablePage } from "@/components/games/playable-page";
+import { getPlayableEntriesByType } from "@/lib/games/playable-entries";
 import { pageThumbIllustrationUrl } from "@/lib/templates/page-thumb";
 import { useStylePalette } from "@/components/templates/worksheet-frame";
 import type { Book, Page, PageType } from "@/types";
@@ -21,18 +21,7 @@ export default function GamesPage() {
   const booksMap = useBookStore((s) => s.books);
   const books = useMemo(() => Object.values(booksMap), [booksMap]);
 
-  const entriesByType = useMemo(() => {
-    const map = new Map<PageType, { book: Book; page: Page }[]>();
-    for (const book of books) {
-      for (const page of book.pages) {
-        if (!isPlayablePage(page.data.type)) continue;
-        const list = map.get(page.data.type) ?? [];
-        list.push({ book, page });
-        map.set(page.data.type, list);
-      }
-    }
-    return map;
-  }, [books]);
+  const entriesByType = useMemo(() => getPlayableEntriesByType(books), [books]);
 
   const totalGames = Array.from(entriesByType.values()).reduce((sum, list) => sum + list.length, 0);
 
@@ -60,13 +49,15 @@ export default function GamesPage() {
                       <gameType.icon className="size-5" />
                     </span>
                     <div>
-                      <p className="font-display font-bold">{gameType.label}</p>
+                      <p className="font-display font-bold">
+                        {gameType.label} <span className="font-normal text-muted-foreground">· {entries.length} level</span>
+                      </p>
                       <p className="text-xs text-muted-foreground">{gameType.description}</p>
                     </div>
                   </div>
                   <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-4">
-                    {entries.map(({ book, page }) => (
-                      <GameCard key={page.id} book={book} page={page} />
+                    {entries.map(({ book, page }, i) => (
+                      <GameCard key={page.id} book={book} page={page} type={gameType.type} level={i + 1} />
                     ))}
                   </div>
                 </section>
@@ -79,13 +70,13 @@ export default function GamesPage() {
   );
 }
 
-function GameCard({ book, page }: { book: Book; page: Page }) {
+function GameCard({ book, page, type, level }: { book: Book; page: Page; type: PageType; level: number }) {
   const palette = useStylePalette(book.config.style);
   const url = pageThumbIllustrationUrl(page);
 
   return (
     <Link
-      href={`/books/${book.id}?play=1&page=${page.pageNumber}`}
+      href={`/games/play?type=${type}&book=${book.id}&page=${page.pageNumber}`}
       className="group flex flex-col overflow-hidden rounded-2xl border border-border/70 bg-card shadow-sm shadow-black/[0.02] transition-all hover:-translate-y-0.5 hover:shadow-md"
     >
       <div className="relative flex aspect-[4/3] items-center justify-center" style={{ background: palette.accentSoft }}>
@@ -93,6 +84,9 @@ function GameCard({ book, page }: { book: Book; page: Page }) {
           // eslint-disable-next-line @next/next/no-img-element
           <img src={url} alt="" className="h-[55%] w-[55%] object-contain" />
         )}
+        <span className="absolute top-2 left-2 rounded-full bg-white/90 px-2 py-0.5 text-[0.65rem] font-bold text-foreground shadow-sm">
+          Level {level}
+        </span>
         <span className="absolute inset-0 flex items-center justify-center bg-black/0 opacity-0 transition-all group-hover:bg-black/20 group-hover:opacity-100">
           <span className="flex size-11 items-center justify-center rounded-full bg-white text-primary shadow-md">
             <Play className="size-5 fill-current" />

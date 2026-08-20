@@ -12,11 +12,17 @@ export function MatchObjectsGame({
   style,
   pageNumber,
   totalPages,
+  onNext,
+  levelLabel,
+  onExit,
 }: {
   data: MatchObjectsPageData;
   style: BookStyle;
   pageNumber: number;
   totalPages: number;
+  onNext?: () => void;
+  levelLabel?: string;
+  onExit?: () => void;
 }) {
   const p = useStylePalette(style);
   const rightOrder = [...data.pairs].reverse();
@@ -95,7 +101,7 @@ export function MatchObjectsGame({
         </div>
       </div>
 
-      <GameCompleteOverlay show={done} palette={p} onReplay={reset} />
+      <GameCompleteOverlay show={done} palette={p} onReplay={reset} onNext={onNext} levelLabel={levelLabel} onExit={onExit} />
     </WorksheetFrame>
   );
 }

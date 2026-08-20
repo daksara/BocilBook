@@ -1,18 +1,29 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { PartyPopper, RotateCcw } from "lucide-react";
+import { ArrowRight, PartyPopper, RotateCcw } from "lucide-react";
 import type { StylePalette } from "@/components/templates/worksheet-frame";
 
 export function GameCompleteOverlay({
   show,
   palette,
   onReplay,
+  onNext,
+  levelLabel,
+  onExit,
 }: {
   show: boolean;
   palette: StylePalette;
   onReplay: () => void;
+  /** When provided, shows a "next level" primary action instead of just replaying. */
+  onNext?: () => void;
+  /** e.g. "Level 2 dari 5" — shown above the title when part of a level sequence. */
+  levelLabel?: string;
+  /** Shown as a secondary action when there is no next level (end of the sequence). */
+  onExit?: () => void;
 }) {
+  const inLevelFlow = Boolean(levelLabel);
+
   return (
     <AnimatePresence>
       {show && (
@@ -32,17 +43,46 @@ export function GameCompleteOverlay({
             <span className="flex size-14 items-center justify-center rounded-full" style={{ background: palette.accent, color: "white" }}>
               <PartyPopper className="size-7" />
             </span>
+            {levelLabel && (
+              <p className="text-xs font-semibold tracking-wide uppercase opacity-70" style={{ color: palette.ink }}>
+                {levelLabel}
+              </p>
+            )}
             <p className="font-display text-xl font-extrabold" style={{ color: palette.ink }}>
-              Hebat, selesai!
+              {onNext ? "Level selesai!" : inLevelFlow ? "Semua level tuntas!" : "Hebat, selesai!"}
             </p>
-            <button
-              type="button"
-              onClick={onReplay}
-              className="mt-1 inline-flex items-center gap-1.5 rounded-full px-4 py-2 font-display text-sm font-bold text-white"
-              style={{ background: palette.accent }}
-            >
-              <RotateCcw className="size-4" /> Main Lagi
-            </button>
+
+            {onNext ? (
+              <button
+                type="button"
+                onClick={onNext}
+                className="mt-1 inline-flex items-center gap-1.5 rounded-full px-4 py-2 font-display text-sm font-bold text-white"
+                style={{ background: palette.accent }}
+              >
+                Level Berikutnya <ArrowRight className="size-4" />
+              </button>
+            ) : (
+              <button
+                type="button"
+                onClick={onReplay}
+                className="mt-1 inline-flex items-center gap-1.5 rounded-full px-4 py-2 font-display text-sm font-bold text-white"
+                style={{ background: palette.accent }}
+              >
+                <RotateCcw className="size-4" /> Main Lagi
+              </button>
+            )}
+
+            {onNext ? (
+              <button type="button" onClick={onReplay} className="text-xs font-semibold underline opacity-70" style={{ color: palette.ink }}>
+                Ulangi level ini
+              </button>
+            ) : (
+              onExit && (
+                <button type="button" onClick={onExit} className="text-xs font-semibold underline opacity-70" style={{ color: palette.ink }}>
+                  Kembali ke Main Game
+                </button>
+              )
+            )}
           </motion.div>
         </motion.div>
       )}

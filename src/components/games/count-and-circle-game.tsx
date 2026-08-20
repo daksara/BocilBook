@@ -11,11 +11,17 @@ export function CountAndCircleGame({
   style,
   pageNumber,
   totalPages,
+  onNext,
+  levelLabel,
+  onExit,
 }: {
   data: CountAndCirclePageData;
   style: BookStyle;
   pageNumber: number;
   totalPages: number;
+  onNext?: () => void;
+  levelLabel?: string;
+  onExit?: () => void;
 }) {
   const p = useStylePalette(style);
   const [correct, setCorrect] = useState(false);
@@ -69,7 +75,7 @@ export function CountAndCircleGame({
         </div>
       </div>
 
-      <GameCompleteOverlay show={correct} palette={p} onReplay={reset} />
+      <GameCompleteOverlay show={correct} palette={p} onReplay={reset} onNext={onNext} levelLabel={levelLabel} onExit={onExit} />
     </WorksheetFrame>
   );
 }
