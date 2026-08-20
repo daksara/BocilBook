@@ -23,7 +23,7 @@ export function MatchObjectsTemplate({
         <div className="flex flex-1 flex-col justify-between">
           {data.pairs.map((pair) => (
             <div key={pair.id} className="flex justify-start">
-              <IllustrationTile src={pair.illustrationLeft.url} alt={pair.left} palette={p} size="md" />
+              <IllustrationTile src={pair.illustrationLeft.url} alt={pair.left} palette={p} size="sm" />
             </div>
           ))}
         </div>
@@ -37,7 +37,7 @@ export function MatchObjectsTemplate({
         <div className="flex flex-1 flex-col justify-between">
           {rightOrder.map((pair) => (
             <div key={pair.id} className="flex justify-end">
-              <IllustrationTile src={pair.illustrationRight.url} alt={pair.right} palette={p} size="md" />
+              <IllustrationTile src={pair.illustrationRight.url} alt={pair.right} palette={p} size="sm" />
             </div>
           ))}
         </div>
