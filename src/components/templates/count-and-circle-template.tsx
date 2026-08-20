@@ -17,10 +17,10 @@ export function CountAndCircleTemplate({
     <WorksheetFrame style={style} pageNumber={pageNumber} totalPages={totalPages} eyebrow="Count & Circle">
       <InstructionBanner palette={p}>{data.instruction}</InstructionBanner>
 
-      <div className="grid flex-1 grid-cols-1 gap-4">
+      <div className="flex flex-1 flex-col gap-4">
         <div
-          className="flex flex-wrap items-center justify-center gap-3 rounded-2xl p-5 sm:gap-4"
-          style={{ background: p.accentSoft, minHeight: "44%" }}
+          className="flex flex-1 flex-wrap items-center justify-center gap-4 rounded-2xl p-5 sm:gap-6"
+          style={{ background: p.accentSoft }}
         >
           {Array.from({ length: data.targetCount }).map((_, i) => (
             // eslint-disable-next-line @next/next/no-img-element
@@ -28,7 +28,7 @@ export function CountAndCircleTemplate({
               key={i}
               src={data.illustration.url}
               alt={data.itemLabel}
-              className="h-14 w-14 object-contain sm:h-20 sm:w-20"
+              className="h-16 w-16 object-contain sm:h-24 sm:w-24"
               draggable={false}
             />
           ))}

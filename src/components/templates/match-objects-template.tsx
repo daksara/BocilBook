@@ -19,23 +19,25 @@ export function MatchObjectsTemplate({
     <WorksheetFrame style={style} pageNumber={pageNumber} totalPages={totalPages} eyebrow="Matching">
       <InstructionBanner palette={p}>{data.instruction}</InstructionBanner>
 
-      <div className="flex flex-1 items-center justify-between gap-6 py-2">
-        <div className="flex flex-1 flex-col gap-5">
+      <div className="flex flex-1 items-stretch justify-between gap-6 py-2">
+        <div className="flex flex-1 flex-col justify-between">
           {data.pairs.map((pair) => (
             <div key={pair.id} className="flex justify-start">
-              <IllustrationTile src={pair.illustrationLeft.url} alt={pair.left} palette={p} size="sm" />
+              <IllustrationTile src={pair.illustrationLeft.url} alt={pair.left} palette={p} size="md" />
             </div>
           ))}
         </div>
-        <div className="flex flex-col items-stretch gap-5 self-stretch justify-around opacity-20">
+        <div className="flex w-16 flex-col items-stretch justify-between opacity-40 sm:w-24">
           {data.pairs.map((pair) => (
-            <div key={pair.id} className="h-px flex-1 border-t-2 border-dashed" style={{ borderColor: p.ink }} />
+            <div key={pair.id} className="flex flex-1 items-center">
+              <div className="h-0.5 w-full border-t-4 border-dotted" style={{ borderColor: p.ink }} />
+            </div>
           ))}
         </div>
-        <div className="flex flex-1 flex-col gap-5">
+        <div className="flex flex-1 flex-col justify-between">
           {rightOrder.map((pair) => (
             <div key={pair.id} className="flex justify-end">
-              <IllustrationTile src={pair.illustrationRight.url} alt={pair.right} palette={p} size="sm" />
+              <IllustrationTile src={pair.illustrationRight.url} alt={pair.right} palette={p} size="md" />
             </div>
           ))}
         </div>
